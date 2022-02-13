@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:return_success_4_app/controller/databaseService.dart';
+
+import '../homePage/homepage_widgets.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -12,7 +15,12 @@ class SettingsPage extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Text("settings"),
+        child: iconButton(
+            icon: Icons.delete_outline,
+            color: Color.fromARGB(255, 224, 116, 116),
+            onPressed: () async {
+              await DatabaseService().clearMessagesBox();
+            }),
       ),
     );
   }

@@ -1,9 +1,12 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:return_success_4_app/controller/databaseService.dart';
 import 'package:return_success_4_app/controller/notificationService.dart';
 import 'package:return_success_4_app/view/homepage/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'model/messageModel.dart';
 
 ///Callback for when FCM messages are received when the app is either in the background or terminated
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -11,15 +14,25 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // make sure you call `initializeApp` before using other Firebase services.
   //await Firebase.initializeApp();
   print("Handling a background message: ${message.messageId}");
+
+  // Storing the message in the Hive DB (independant version, as we're running it from an isolate)
+  await Hive.initFlutter();
+  await Hive.openBox('messages');
+  final messagesBox = Hive.box('messages');
+  int newKey = await messagesBox.add(Message.fromJson(message.data).toJson());
+  print(
+      "Adding message to messages box at key: ${newKey} with content: ${message.data}");
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase
+  // Initialize Firebase and Hive DB
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Hive.initFlutter();
+  await Hive.openBox('messages');
 
   // Initialize Firebase Cloud Messaging (FCM)
   var _fcm = FCMService();
@@ -27,12 +40,12 @@ void main() async {
   await _fcm.setupHeadsUpNotifications();
   //await _fcm.printToken();
   // Set the foreground callback, for when messages are received and the app is in the foreground
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
     print('Got a message whilst in the foreground!');
-    print('Message data: ${message.data}');
     if (message.notification != null) {
       print('Message also contained a notification: ${message.notification}');
     }
+    DatabaseService().addToMessagesBox(Message.fromJson(message.data));
   });
   // Set the background callback, for when messages are received and the app is either in the background or terminated
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
