@@ -10,16 +10,16 @@ class MessagesHistoryListView extends StatelessWidget {
       required IconData icon,
       required BuildContext context}) {
     return Container(
-      height: 90,
-      width: MediaQuery.of(context).size.width - 32,
+      //height: 90,
+      //width: MediaQuery.of(context).size.width - 32,
       margin: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: [
           BoxShadow(
-            color: Color.fromARGB(20, 0, 0, 0),
-            offset: Offset(2, 4),
+            color: Color.fromARGB(25, 0, 0, 0),
+            offset: Offset(2, 2),
             blurRadius: 5,
           ),
         ],
@@ -38,7 +38,7 @@ class MessagesHistoryListView extends StatelessWidget {
         Expanded(
           child: Container(
             height: 100,
-            padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+            padding: const EdgeInsets.fromLTRB(0, 15, 15, 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

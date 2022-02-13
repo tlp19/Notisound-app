@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:return_success_4_app/view/homepage/homepage_widgets.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:return_success_4_app/view/homePage/homepage_widgets.dart';
+import 'package:return_success_4_app/view/settingsPage/settings.dart';
 
+import '../addPage/add.dart';
+import '../editPage/edit.dart';
 import 'messageHistoryList.dart';
 
 class HomePage extends StatelessWidget {
@@ -30,20 +34,30 @@ class HomePage extends StatelessWidget {
                 children: [
                   iconButton(
                       icon: Icons.add_outlined,
+                      color: Color.fromARGB(255, 140, 207, 155),
                       onPressed: () {
-                        print("add");
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => AddPage()));
                       }),
                   SizedBox(width: 32),
                   iconButton(
                       icon: Icons.edit_outlined,
+                      color: Color.fromARGB(255, 116, 142, 207),
                       onPressed: () {
-                        print("edit");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EditPage()));
                       }),
                   SizedBox(width: 32),
                   iconButton(
                       icon: Icons.settings_outlined,
-                      onPressed: () {
-                        print("settings");
+                      color: Color.fromARGB(255, 159, 163, 172),
+                      onPressed: () async {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SettingsPage()));
                       }),
                 ],
               ),
