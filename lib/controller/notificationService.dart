@@ -4,10 +4,13 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class FCMService {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
+  /// Prints in the console the current's device FCM token
   Future<void> printToken() async {
     String? token = await messaging.getToken();
     print(token);
   }
+
+  //
 
   /// Request permissions to send notifications on iOS (not needed for Android)
   Future<void> requestIOSPermissions() async {
@@ -57,8 +60,7 @@ class FCMService {
   }
 
   /// Subscribe to the FCM topics in the list
-  Future<void> subscribeToTopics(
-      FirebaseMessaging messaging, List<String> topics) async {
+  Future<void> subscribeToTopics(List<String> topics) async {
     for (String topic in topics) {
       await FirebaseMessaging.instance.subscribeToTopic(topic);
     }
