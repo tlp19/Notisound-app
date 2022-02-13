@@ -1,6 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:return_success_4_app/controller/notificationServices.dart';
+import 'package:return_success_4_app/controller/notificationService.dart';
 import 'package:return_success_4_app/view/homepage/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
