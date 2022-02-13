@@ -4,25 +4,77 @@ import '../../model/messageModel.dart';
 
 /// Colourful circular button with an icon
 Widget iconButton(
-    {required IconData icon,
+    {String? label,
+    required IconData icon,
     required Color color,
     required Function onPressed}) {
-  return Container(
-    height: 60,
-    width: 60,
-    decoration: BoxDecoration(
-      color: color,
-      borderRadius: BorderRadius.all(Radius.circular(50)),
+  return GestureDetector(
+    onTap: () {
+      onPressed();
+    },
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        // Icon
+        Container(
+            height: 60,
+            width: 60,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: const BorderRadius.all(Radius.circular(50)),
+            ),
+            child: Icon(
+              icon,
+              size: 40,
+              color: Colors.white,
+            )),
+        // Label (if any)
+        (label == null)
+            ? Container()
+            : Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+      ],
     ),
-    child: IconButton(
+  );
+}
+
+/// A customizable pop-up alert dialog
+Widget buildPopupDialog(
+    {required BuildContext context,
+    required String dialogTitle,
+    required List<Widget> dialogContent,
+    required String buttonText,
+    required Function onButtonPressed}) {
+  return AlertDialog(
+    title: Text(dialogTitle),
+    content: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: dialogContent,
+    ),
+    actions: [
+      TextButton(
+        child: const Text("Cancel"),
         onPressed: () {
-          onPressed();
+          Navigator.of(context).pop();
         },
-        icon: Icon(
-          icon,
-          size: 40,
-          color: Colors.white,
-        )),
+      ),
+      TextButton(
+        child: Text(buttonText),
+        onPressed: () {
+          onButtonPressed();
+          Navigator.of(context).pop();
+        },
+      ),
+    ],
   );
 }
 
@@ -72,7 +124,15 @@ Widget messageCard(
                     style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  Text(timeago.format(message.dateTime, locale: 'en_short')),
+                  Text(
+                    timeago.format(message.dateTime, locale: 'en_short'),
+                    style:
+                        (timeago.format(message.dateTime, locale: 'en_short') ==
+                                "now")
+                            ? const TextStyle(
+                                color: Colors.red, fontWeight: FontWeight.bold)
+                            : null,
+                  ),
                 ],
               ),
               const SizedBox(

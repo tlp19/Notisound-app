@@ -1,15 +1,40 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:return_success_4_app/view/homePage/homepage_widgets.dart';
-import 'package:return_success_4_app/view/settingsPage/settings.dart';
 
-import '../addPage/add.dart';
-import '../editPage/edit.dart';
-import '../infoPage/info.dart';
 import 'messageHistoryList.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  /// Sets-up how a click on a notification is handled, from both the Terminated and Background states
+  Future<void> setupInteractedMessage() async {
+    // Get any messages which caused the application to open from a TERMINATED state.
+    RemoteMessage? initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+    if (initialMessage != null) {
+      _handleMessage(initialMessage);
+    }
+    // Also handle any interaction when the app is in the BACKGROUND via a Stream listener
+    FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
+  }
+
+  /// Function executed when a notification is clicked (currently common for both Terminated and Background states)
+  void _handleMessage(RemoteMessage message) {
+    Navigator.pushNamed(context, '/');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Setup the handling of interacted messages
+    setupInteractedMessage();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,37 +45,35 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(
+              const Text(
                 'Notisound',
                 style: TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   iconButton(
-                      icon: Icons.info_outlined,
-                      color: Color.fromARGB(255, 140, 207, 155),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => InfoPage()));
-                      }),
-                  SizedBox(width: 32),
+                    icon: Icons.refresh_outlined,
+                    color: const Color.fromARGB(255, 134, 194, 196),
+                    onPressed: () {
+                      Navigator.popAndPushNamed(context, '/');
+                    },
+                  ),
+                  const SizedBox(width: 32),
                   iconButton(
                       icon: Icons.settings_outlined,
-                      color: Color.fromARGB(255, 116, 142, 207),
+                      color: const Color.fromARGB(255, 187, 196, 207),
                       onPressed: () async {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SettingsPage()));
+                        Navigator.pushNamed(
+                          context,
+                          '/settings',
+                        );
                       }),
                 ],
               ),
@@ -66,7 +89,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             header(),
-            SizedBox(
+            const SizedBox(
               height: 60,
             ),
             const MessagesHistoryListView(),

@@ -7,6 +7,10 @@ import 'package:return_success_4_app/view/homepage/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'model/messageModel.dart';
+import 'view/addPage/add.dart';
+import 'view/editPage/edit.dart';
+import 'view/infoPage/info.dart';
+import 'view/settingsPage/settings.dart';
 
 ///Callback for when FCM messages are received when the app is either in the background or terminated
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -22,7 +26,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   final messagesBox = Hive.box<Message>('messages');
   int newKey = await messagesBox.add(Message.fromJson(message.data));
   print(
-      "Adding message to messages box at key: ${newKey} with content: ${message.data}");
+      "Adding message to messages box at key: $newKey with content: ${message.data}");
 }
 
 void main() async {
@@ -38,8 +42,8 @@ void main() async {
 
   // Initialize Firebase Cloud Messaging (FCM)
   var _fcm = FCMService();
-  await _fcm.requestIOSPermissions();
-  await _fcm.setupHeadsUpNotifications();
+  _fcm.requestIOSPermissions();
+  _fcm.setupHeadsUpNotifications();
   //await _fcm.printToken();
   // Set the foreground callback, for when messages are received and the app is in the foreground
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
@@ -52,7 +56,9 @@ void main() async {
   // Set the background callback, for when messages are received and the app is either in the background or terminated
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   // Subscribe to topics
-  await _fcm.subscribeToTopics(['global', 'testing']);
+  _fcm.subscribeToTopics(['global', 'testing']);
+
+  // Run the App
   runApp(const MyApp());
 }
 
@@ -62,12 +68,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Notisound',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         backgroundColor: Colors.white,
       ),
-      home: const HomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        '/settings': (context) => const SettingsPage(),
+        '/info': (context) => const InfoPage(),
+        '/edit': (context) => const EditPage(),
+        '/add': (context) => const AddPage(),
+      },
     );
   }
 }

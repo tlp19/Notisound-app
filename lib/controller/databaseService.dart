@@ -10,14 +10,14 @@ class DatabaseService {
     // Storing the message in the Hive DB
     int newKey = await messagesBox.add(entry);
     print(
-        "Adding message to messages box at key: ${newKey} with title: ${entry.title}");
+        "Adding message to messages box at key: $newKey with title: ${entry.title}");
   }
 
   /// Clear the 'messages' box of Hive.
   /// Note: the box must be previously open for the operation to succeed.
   Future<void> clearMessagesBox() async {
     // Storing the message in the Hive DB
-    int newKey = await messagesBox.clear();
+    await messagesBox.clear();
     print("Clearing the 'messages' box...");
   }
 }
