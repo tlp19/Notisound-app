@@ -1,7 +1,19 @@
+import 'package:hive/hive.dart';
+
+part 'messageModel.g.dart';
+
+@HiveType(typeId: 0)
 class Message {
+  @HiveField(0)
   String title;
+
+  @HiveField(1)
   String category;
+
+  @HiveField(2)
   String content;
+
+  @HiveField(3)
   DateTime dateTime;
 
   Message({
@@ -25,7 +37,7 @@ class Message {
       title: data['title'] ?? 'Unknown title',
       category: data['category'] ?? 'Unknown category',
       content: data['content'] ?? 'No content',
-      dateTime: DateTime.parse(data['dateTime'] ?? "19700101 12:34:56"),
+      dateTime: DateTime.now(),
     );
   }
 }

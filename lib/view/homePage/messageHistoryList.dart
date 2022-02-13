@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
+
+import '../../controller/databaseService.dart';
 import '../../model/messageModel.dart';
 import 'homepage_widgets.dart';
 
@@ -7,21 +11,27 @@ class MessagesHistoryListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: 10,
-        itemBuilder: ((context, index) {
-          return messageCard(
-            message: Message(
-                title: "Someone's at the door!",
-                category: "Doorbell",
-                content:
-                    "The doorbell just rang! You should go check who's at the door. The doorbell just rang! You should go check who's at the door.",
-                dateTime: DateTime.now()),
-            icon: Icons.doorbell_outlined,
-            context: context,
-          );
-        }));
+    return ValueListenableBuilder(
+      valueListenable: DatabaseService().messagesBox.listenable(),
+      builder: (context, Box<Message> box, widget) {
+        return ListView.builder(
+          reverse: true,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: box.length,
+          itemBuilder: (BuildContext context, int index) {
+            Message? message = DatabaseService().messagesBox.get(index);
+
+            return (message == null)
+                ? Container()
+                : messageCard(
+                    message: message,
+                    icon: Icons.doorbell_outlined,
+                    context: context,
+                  );
+          },
+        );
+      },
+    );
   }
 }

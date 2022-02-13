@@ -17,9 +17,10 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
   // Storing the message in the Hive DB (independant version, as we're running it from an isolate)
   await Hive.initFlutter();
-  await Hive.openBox('messages');
-  final messagesBox = Hive.box('messages');
-  int newKey = await messagesBox.add(Message.fromJson(message.data).toJson());
+  Hive.registerAdapter<Message>(MessageAdapter());
+  await Hive.openBox<Message>('messages');
+  final messagesBox = Hive.box<Message>('messages');
+  int newKey = await messagesBox.add(Message.fromJson(message.data));
   print(
       "Adding message to messages box at key: ${newKey} with content: ${message.data}");
 }
@@ -32,7 +33,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await Hive.initFlutter();
-  await Hive.openBox('messages');
+  Hive.registerAdapter<Message>(MessageAdapter());
+  await Hive.openBox<Message>('messages');
 
   // Initialize Firebase Cloud Messaging (FCM)
   var _fcm = FCMService();
