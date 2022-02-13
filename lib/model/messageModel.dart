@@ -20,7 +20,7 @@ class Message {
     };
   }
 
-  Message messagefromJson(Map<String, dynamic> data) {
+  Message fromJson(Map<String, dynamic> data) {
     return Message(
       title: data['title'] ?? 'Unknown title',
       category: data['category'] ?? 'Unknown category',
