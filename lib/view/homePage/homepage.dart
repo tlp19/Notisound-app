@@ -5,6 +5,7 @@ import 'package:return_success_4_app/view/settingsPage/settings.dart';
 
 import '../addPage/add.dart';
 import '../editPage/edit.dart';
+import '../infoPage/info.dart';
 import 'messageHistoryList.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,26 +34,18 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   iconButton(
-                      icon: Icons.add_outlined,
+                      icon: Icons.info_outlined,
                       color: Color.fromARGB(255, 140, 207, 155),
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => AddPage()));
-                      }),
-                  SizedBox(width: 32),
-                  iconButton(
-                      icon: Icons.edit_outlined,
-                      color: Color.fromARGB(255, 116, 142, 207),
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => EditPage()));
+                                builder: (context) => InfoPage()));
                       }),
                   SizedBox(width: 32),
                   iconButton(
                       icon: Icons.settings_outlined,
-                      color: Color.fromARGB(255, 159, 163, 172),
+                      color: Color.fromARGB(255, 116, 142, 207),
                       onPressed: () async {
                         Navigator.push(
                             context,
