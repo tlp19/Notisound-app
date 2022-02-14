@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-class FCMService {
+class NotificationService {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   /// Prints in the console the current's device FCM token

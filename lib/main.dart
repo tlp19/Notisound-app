@@ -41,7 +41,7 @@ void main() async {
   await Hive.openBox<Message>('messages');
 
   // Initialize Firebase Cloud Messaging (FCM)
-  var _fcm = FCMService();
+  var _fcm = NotificationService();
   _fcm.requestIOSPermissions();
   _fcm.setupHeadsUpNotifications();
   //await _fcm.printToken();
