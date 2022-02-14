@@ -6,7 +6,7 @@ class DatabaseService {
 
   /// Add the entry to the 'messages' box of Hive.
   /// Note: the box must be previously open for the operation to succeed.
-  Future<void> addToMessagesBox(Message entry) async {
+  Future<void> addToMessagesDB(Message entry) async {
     // Storing the message in the Hive DB
     int newKey = await messagesBox.add(entry);
     print(
@@ -15,7 +15,7 @@ class DatabaseService {
 
   /// Clear the 'messages' box of Hive.
   /// Note: the box must be previously open for the operation to succeed.
-  Future<void> clearMessagesBox() async {
+  Future<void> clearMessagesDB() async {
     // Storing the message in the Hive DB
     await messagesBox.clear();
     print("Clearing the 'messages' box...");

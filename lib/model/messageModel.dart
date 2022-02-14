@@ -16,11 +16,15 @@ class Message {
   @HiveField(3)
   DateTime dateTime;
 
+  @HiveField(4)
+  String author;
+
   Message({
     required this.title,
     required this.category,
     required this.content,
     required this.dateTime,
+    required this.author,
   });
 
   Map<String, Object?> toJson() {
@@ -28,7 +32,8 @@ class Message {
       'title': title,
       'category': category,
       'content': content,
-      'dateTime': dateTime.toString()
+      'dateTime': dateTime.toString(),
+      'author': author,
     };
   }
 
@@ -38,6 +43,7 @@ class Message {
       category: data['category'] ?? 'Unknown category',
       content: data['content'] ?? 'No content',
       dateTime: DateTime.now(),
+      author: data['author'] ?? 'No author',
     );
   }
 }

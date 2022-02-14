@@ -51,7 +51,7 @@ void main() async {
     if (message.notification != null) {
       print('Message also contained a notification: ${message.notification}');
     }
-    DatabaseService().addToMessagesBox(Message.fromJson(message.data));
+    DatabaseService().addToMessagesDB(Message.fromJson(message.data));
   });
   // Set the background callback, for when messages are received and the app is either in the background or terminated
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);

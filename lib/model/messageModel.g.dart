@@ -21,13 +21,14 @@ class MessageAdapter extends TypeAdapter<Message> {
       category: fields[1] as String,
       content: fields[2] as String,
       dateTime: fields[3] as DateTime,
+      author: fields[4] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, Message obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class MessageAdapter extends TypeAdapter<Message> {
       ..writeByte(2)
       ..write(obj.content)
       ..writeByte(3)
-      ..write(obj.dateTime);
+      ..write(obj.dateTime)
+      ..writeByte(4)
+      ..write(obj.author);
   }
 
   @override

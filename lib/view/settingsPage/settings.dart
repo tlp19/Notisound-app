@@ -63,7 +63,7 @@ class SettingsPage extends StatelessWidget {
                       ],
                       buttonText: "Clear all",
                       onButtonPressed: () async {
-                        await DatabaseService().clearMessagesBox();
+                        await DatabaseService().clearMessagesDB();
                       }),
                 );
               },
