@@ -32,10 +32,11 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase and Hive DB
+  // Initialize Firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // Initialize HiveDB
   await Hive.initFlutter();
   Hive.registerAdapter<Message>(MessageAdapter());
   await Hive.openBox<Message>('messages');
@@ -62,6 +63,7 @@ void main() async {
   runApp(const MyApp());
 }
 
+/// Flutter Material App, root of the application
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
