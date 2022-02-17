@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:isar/isar.dart';
 
 import '../../controller/databaseService.dart';
@@ -36,7 +36,8 @@ class MessagesHistoryListView extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return messageCard(
                   message: snapshot.data![index],
-                  icon: Icons.doorbell_outlined,
+                  //icon: Icons.warning_amber_rounded,
+                  icon: CupertinoIcons.antenna_radiowaves_left_right,
                   context: context,
                 );
               },

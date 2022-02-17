@@ -101,11 +101,11 @@ Widget messageCard(
     child: Row(children: [
       // Icon
       Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: Icon(
           icon,
-          size: 50,
-          color: Colors.black,
+          size: 40,
+          color: Color.fromARGB(255, 199, 96, 28),
         ),
       ),
       // Message
