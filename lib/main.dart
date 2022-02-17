@@ -20,18 +20,21 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   //await Firebase.initializeApp();
   print("Handling a background message: ${message.messageId}");
 
-  // Storing the message in the DB (we're running it from an isolate)
-  var isar = Isar.getInstance("messages");
-  print("before, isar is: $isar");
+  // Opening Isar
+  var isar = Isar.getInstance('isar');
+
+  print("before, isar is: $isar"); //PRINT 1
   if (isar == null) {
+    print("Isar is not open, so opening it.");
     final dir = await getApplicationSupportDirectory();
     isar = await Isar.open(
       schemas: [MessageSchema],
       directory: dir.path,
     );
   }
-  print("after, isar is: $isar");
+  print("after, isar is: $isar"); //PRINT 2
 
+  // Storing the message in the DB
   await DatabaseService().addToMessagesDB(isar, Message.fromJson(message.data));
 }
 

@@ -18,11 +18,15 @@ class MessagesHistoryListView extends StatelessWidget {
       builder: (context, AsyncSnapshot<List<Message>> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data!.isEmpty) {
-            return const Center(
-                child: Text(
-              "No messages yet.",
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ));
+            return Column(children: [
+              SizedBox(
+                height: (MediaQuery.of(context).size.height / 5),
+              ),
+              const Text(
+                "No messages yet.",
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            ]);
           } else {
             return ListView.builder(
               reverse: true,
