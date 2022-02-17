@@ -17,15 +17,15 @@ Widget iconButton(
       children: [
         // Icon
         Container(
-            height: 60,
-            width: 60,
+            height: 45,
+            width: 45,
             decoration: BoxDecoration(
               color: color,
               borderRadius: const BorderRadius.all(Radius.circular(50)),
             ),
             child: Icon(
               icon,
-              size: 40,
+              size: 30,
               color: Colors.white,
             )),
         // Label (if any)
@@ -36,7 +36,7 @@ Widget iconButton(
                 child: Text(
                   label,
                   style: const TextStyle(
-                    fontSize: 24,
+                    fontSize: 20,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -86,7 +86,7 @@ Widget messageCard(
   return Container(
     //height: 90,
     //width: MediaQuery.of(context).size.width - 32,
-    margin: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+    margin: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
     decoration: const BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -101,17 +101,16 @@ Widget messageCard(
     child: Row(children: [
       // Icon
       Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(8.0),
         child: Icon(
           icon,
-          size: 60,
+          size: 50,
           color: Colors.black,
         ),
       ),
       // Message
       Expanded(
         child: Container(
-          height: 100,
           padding: const EdgeInsets.fromLTRB(0, 15, 15, 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +121,7 @@ Widget messageCard(
                   Text(
                     message.category + "  •  " + message.title,
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: 15, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     timeago.format(message.dateTime, locale: 'en_short'),
@@ -130,21 +129,23 @@ Widget messageCard(
                         (timeago.format(message.dateTime, locale: 'en_short') ==
                                 "now")
                             ? const TextStyle(
-                                color: Colors.red, fontWeight: FontWeight.bold)
-                            : null,
+                                fontSize: 12,
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                              )
+                            : const TextStyle(
+                                fontSize: 12,
+                              ),
                   ),
                 ],
               ),
               const SizedBox(
                 height: 6,
               ),
-              Expanded(
-                child: Text(
-                  message.content,
-                  style: const TextStyle(fontSize: 16),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                ),
+              Text(
+                message.content,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 8,
               ),
             ],
           ),

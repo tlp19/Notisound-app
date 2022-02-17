@@ -1,11 +1,14 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:isar/isar.dart';
 import 'package:return_success_4_app/view/homePage/homepage_widgets.dart';
 
 import 'messageHistoryList.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({required this.isar, Key? key}) : super(key: key);
+
+  final Isar isar;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -26,7 +29,7 @@ class _HomePageState extends State<HomePage> {
 
   /// Function executed when a notification is clicked (currently common for both Terminated and Background states)
   void _handleMessage(RemoteMessage message) {
-    Navigator.pushNamed(context, '/');
+    //Navigator.pushNamed(context, '/');
   }
 
   @override
@@ -48,7 +51,7 @@ class _HomePageState extends State<HomePage> {
               const Text(
                 'Notisound',
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 42,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -65,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.popAndPushNamed(context, '/');
                     },
                   ),
-                  const SizedBox(width: 32),
+                  const SizedBox(width: 24),
                   iconButton(
                       icon: Icons.settings_outlined,
                       color: const Color.fromARGB(255, 187, 196, 207),
@@ -90,9 +93,9 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             header(),
             const SizedBox(
-              height: 60,
+              height: 16,
             ),
-            const MessagesHistoryListView(),
+            MessagesHistoryListView(isar: widget.isar),
           ],
         ),
       ),

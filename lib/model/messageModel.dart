@@ -1,22 +1,20 @@
-import 'package:hive/hive.dart';
+import 'package:isar/isar.dart';
 
 part 'messageModel.g.dart';
 
-@HiveType(typeId: 0)
+@Collection()
 class Message {
-  @HiveField(0)
+  @Id()
+  int id = Isar.autoIncrement;
+
   String title;
 
-  @HiveField(1)
   String category;
 
-  @HiveField(2)
   String content;
 
-  @HiveField(3)
   DateTime dateTime;
 
-  @HiveField(4)
   String author;
 
   Message({

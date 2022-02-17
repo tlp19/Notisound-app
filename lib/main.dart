@@ -1,6 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:return_success_4_app/controller/databaseService.dart';
 import 'package:return_success_4_app/controller/notificationService.dart';
 import 'package:return_success_4_app/view/homepage/homepage.dart';
@@ -19,14 +20,19 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   //await Firebase.initializeApp();
   print("Handling a background message: ${message.messageId}");
 
-  // Storing the message in the Hive DB (independant version, as we're running it from an isolate)
-  await Hive.initFlutter();
-  Hive.registerAdapter<Message>(MessageAdapter());
-  await Hive.openBox<Message>('messages');
-  final messagesBox = Hive.box<Message>('messages');
-  int newKey = await messagesBox.add(Message.fromJson(message.data));
-  print(
-      "Adding message to messages box at key: $newKey with content: ${message.data}");
+  // Storing the message in the DB (we're running it from an isolate)
+  var isar = Isar.getInstance("messages");
+  print("before, isar is: $isar");
+  if (isar == null) {
+    final dir = await getApplicationSupportDirectory();
+    isar = await Isar.open(
+      schemas: [MessageSchema],
+      directory: dir.path,
+    );
+  }
+  print("after, isar is: $isar");
+
+  await DatabaseService().addToMessagesDB(isar, Message.fromJson(message.data));
 }
 
 void main() async {
@@ -36,10 +42,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // Initialize HiveDB
-  await Hive.initFlutter();
-  Hive.registerAdapter<Message>(MessageAdapter());
-  await Hive.openBox<Message>('messages');
+  // Initialize Isar DB
+  final dir = await getApplicationSupportDirectory();
+  final isar = await Isar.open(
+    schemas: [MessageSchema],
+    directory: dir.path,
+  );
 
   // Initialize Firebase Cloud Messaging (FCM)
   var _fcm = NotificationService();
@@ -52,7 +60,7 @@ void main() async {
     if (message.notification != null) {
       print('Message also contained a notification: ${message.notification}');
     }
-    DatabaseService().addToMessagesDB(Message.fromJson(message.data));
+    DatabaseService().addToMessagesDB(isar, Message.fromJson(message.data));
   });
   // Set the background callback, for when messages are received and the app is either in the background or terminated
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -60,12 +68,14 @@ void main() async {
   _fcm.subscribeToTopics(['global', 'testing']);
 
   // Run the App
-  runApp(const MyApp());
+  runApp(MyApp(isar: isar));
 }
 
 /// Flutter Material App, root of the application
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({required this.isar, Key? key}) : super(key: key);
+
+  final Isar isar;
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +88,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
-        '/settings': (context) => const SettingsPage(),
+        '/': (context) => HomePage(isar: isar),
+        '/settings': (context) => SettingsPage(isar: isar),
         '/info': (context) => const InfoPage(),
         '/edit': (context) => const EditPage(),
         '/add': (context) => const AddPage(),
