@@ -2,13 +2,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:return_success_4_app/controller/databaseService.dart';
+import 'package:return_success_4_app/controller/messageDatabaseService.dart';
 import 'package:return_success_4_app/controller/notificationService.dart';
+import 'package:return_success_4_app/model/deviceModel.dart';
 import 'package:return_success_4_app/view/homepage/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'model/messageModel.dart';
-import 'view/addPage/add.dart';
 import 'view/editPage/edit.dart';
 import 'view/infoPage/info.dart';
 import 'view/settingsPage/settings.dart';
@@ -28,14 +28,15 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     print("Isar is not open, so opening it.");
     final dir = await getApplicationSupportDirectory();
     isar = await Isar.open(
-      schemas: [MessageSchema],
+      schemas: [MessageSchema, DeviceSchema],
       directory: dir.path,
     );
   }
   print("after, isar is: $isar"); //PRINT 2
 
   // Storing the message in the DB
-  await DatabaseService().addToMessagesDB(isar, Message.fromJson(message.data));
+  await MessageDatabaseService()
+      .addToMessagesDB(isar, Message.fromJson(message.data));
 }
 
 void main() async {
@@ -48,7 +49,7 @@ void main() async {
   // Initialize Isar DB
   final dir = await getApplicationSupportDirectory();
   final isar = await Isar.open(
-    schemas: [MessageSchema],
+    schemas: [MessageSchema, DeviceSchema],
     directory: dir.path,
   );
 
@@ -63,7 +64,8 @@ void main() async {
     if (message.notification != null) {
       print('Message also contained a notification: ${message.notification}');
     }
-    DatabaseService().addToMessagesDB(isar, Message.fromJson(message.data));
+    MessageDatabaseService()
+        .addToMessagesDB(isar, Message.fromJson(message.data));
   });
   // Set the background callback, for when messages are received and the app is either in the background or terminated
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -94,8 +96,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomePage(isar: isar),
         '/settings': (context) => SettingsPage(isar: isar),
         '/info': (context) => const InfoPage(),
-        '/edit': (context) => const EditPage(),
-        '/add': (context) => const AddPage(),
+        '/edit': (context) => EditPage(isar: isar),
       },
     );
   }

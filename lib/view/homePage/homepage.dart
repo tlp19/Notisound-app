@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
-import 'package:return_success_4_app/view/homePage/homepage_widgets.dart';
+import 'package:return_success_4_app/view/general_widgets.dart';
 
 import 'messageHistoryList.dart';
 

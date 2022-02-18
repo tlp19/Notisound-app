@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
-import 'package:return_success_4_app/controller/databaseService.dart';
+import 'package:return_success_4_app/controller/messageDatabaseService.dart';
 
-import '../editPage/edit.dart';
 import '../general_widgets.dart';
-import '../homePage/homepage_widgets.dart';
-import '../infoPage/info.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({required this.isar, Key? key}) : super(key: key);
@@ -24,29 +21,29 @@ class SettingsPage extends StatelessWidget {
             iconButton(
                 label: "Information",
                 icon: Icons.info_outlined,
-                color: const Color.fromARGB(255, 228, 227, 155),
+                color: Color.fromARGB(255, 214, 213, 121),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const InfoPage()));
+                  Navigator.pushNamed(
+                    context,
+                    "/info",
+                  );
                 }),
             const SizedBox(height: 24),
             iconButton(
-                label: "Add or edit devices",
+                label: "Manage devices",
                 icon: Icons.mode_edit_outlined,
-                color: const Color.fromARGB(255, 141, 177, 224),
+                color: Color.fromARGB(255, 104, 145, 197),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const EditPage()));
+                  Navigator.pushNamed(
+                    context,
+                    "/edit",
+                  );
                 }),
             const SizedBox(height: 24),
             iconButton(
               label: "Clear stored messages",
-              icon: Icons.delete_outline,
-              color: const Color.fromARGB(255, 219, 139, 139),
+              icon: Icons.delete_forever_outlined,
+              color: Color.fromARGB(255, 184, 100, 100),
               onPressed: () {
                 showDialog(
                   context: context,
@@ -60,7 +57,7 @@ class SettingsPage extends StatelessWidget {
                       ],
                       buttonText: "Clear all",
                       onButtonPressed: () async {
-                        await DatabaseService().clearMessagesDB(isar);
+                        await MessageDatabaseService().clearMessagesDB(isar);
                       }),
                 );
               },

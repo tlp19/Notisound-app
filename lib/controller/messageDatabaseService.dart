@@ -1,8 +1,7 @@
 import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:return_success_4_app/model/messageModel.dart';
 
-class DatabaseService {
+class MessageDatabaseService {
   /// Add the entry to the 'messages' DB in Isar
   Future<void> addToMessagesDB(Isar isar, Message entry) async {
     // Storing the message in the DB

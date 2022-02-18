@@ -63,6 +63,15 @@ class NotificationService {
   Future<void> subscribeToTopics(List<String> topics) async {
     for (String topic in topics) {
       await FirebaseMessaging.instance.subscribeToTopic(topic);
+      print('Subscribed to $topic');
+    }
+  }
+
+  /// Unsubscribe to the FCM topics in the list
+  Future<void> unsubscribeFromTopics(List<String> topics) async {
+    for (String topic in topics) {
+      await FirebaseMessaging.instance.unsubscribeFromTopic(topic);
+      print('Unsubscribed from $topic');
     }
   }
 }

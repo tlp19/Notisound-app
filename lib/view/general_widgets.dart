@@ -11,3 +11,82 @@ AppBar transparentAppBar() {
     ),
   );
 }
+
+/// Colourful circular button with an icon
+Widget iconButton(
+    {String? label,
+    double size = 45,
+    required IconData icon,
+    required Color color,
+    required Function onPressed}) {
+  return GestureDetector(
+    onTap: () {
+      onPressed();
+    },
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        // Icon
+        Container(
+            height: size,
+            width: size,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: const BorderRadius.all(Radius.circular(50)),
+            ),
+            child: Icon(
+              icon,
+              size: (size * 2 / 3),
+              color: Colors.white,
+            )),
+        // Label (if any)
+        (label == null)
+            ? Container(
+                width: 0,
+              )
+            : Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: (size * 20 / 45),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+      ],
+    ),
+  );
+}
+
+/// A customizable pop-up alert dialog
+Widget buildPopupDialog(
+    {required BuildContext context,
+    required String dialogTitle,
+    required List<Widget> dialogContent,
+    required String buttonText,
+    required Function onButtonPressed}) {
+  return AlertDialog(
+    title: Text(dialogTitle),
+    content: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: dialogContent,
+    ),
+    actions: [
+      TextButton(
+        child: const Text("Cancel"),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+      ),
+      TextButton(
+        child: Text(buttonText),
+        onPressed: () {
+          onButtonPressed();
+          Navigator.of(context).pop();
+        },
+      ),
+    ],
+  );
+}
