@@ -18,13 +18,6 @@ class MessageDatabaseService {
     return isar.messages.where().build().watch(initialReturn: true);
   }
 
-  /// Get an element of the DB 'messages'
-  Future<Message?> getMessageById(Isar isar, int id) async {
-    // Get the message
-    final message = isar.messages.get(id);
-    return message;
-  }
-
   /// Clear the 'messages' DB of Isar.
   Future<void> clearMessagesDB(Isar isar) async {
     //Clear all messages

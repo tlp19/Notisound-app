@@ -1,6 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import '../../model/messageModel.dart';
+import '../general_widgets.dart';
+
+Widget header(BuildContext context) {
+  return SizedBox(
+    height: (MediaQuery.of(context).size.height / 4),
+    child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          const Text(
+            'Notisound',
+            style: TextStyle(
+              fontSize: 42,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              iconButton(
+                icon: Icons.refresh_outlined,
+                color: const Color.fromARGB(255, 134, 194, 196),
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, '/');
+                },
+              ),
+              const SizedBox(width: 24),
+              iconButton(
+                  icon: Icons.settings_outlined,
+                  color: const Color.fromARGB(255, 187, 196, 207),
+                  onPressed: () async {
+                    Navigator.pushNamed(
+                      context,
+                      '/settings',
+                    );
+                  }),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
+}
 
 /// A card that displays a message of type Message
 Widget messageCard(
@@ -29,7 +75,7 @@ Widget messageCard(
         child: Icon(
           icon,
           size: 40,
-          color: Color.fromARGB(255, 199, 96, 28),
+          color: const Color.fromARGB(255, 199, 96, 28),
         ),
       ),
       // Message

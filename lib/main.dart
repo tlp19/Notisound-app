@@ -23,7 +23,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // Opening Isar
   var isar = Isar.getInstance('isar');
 
-  print("before, isar is: $isar"); //PRINT 1
   if (isar == null) {
     print("Isar is not open, so opening it.");
     final dir = await getApplicationSupportDirectory();
@@ -32,7 +31,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
       directory: dir.path,
     );
   }
-  print("after, isar is: $isar"); //PRINT 2
 
   // Storing the message in the DB
   await MessageDatabaseService()
@@ -60,17 +58,14 @@ void main() async {
   //await _fcm.printToken();
   // Set the foreground callback, for when messages are received and the app is in the foreground
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-    print('Got a message whilst in the foreground!');
-    if (message.notification != null) {
-      print('Message also contained a notification: ${message.notification}');
-    }
+    // Add message to DB
     MessageDatabaseService()
         .addToMessagesDB(isar, Message.fromJson(message.data));
   });
   // Set the background callback, for when messages are received and the app is either in the background or terminated
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  // Subscribe to topics
-  _fcm.subscribeToTopics(['global', 'testing']);
+  // Subscribe to general topics
+  _fcm.subscribeToTopics(['global']);
 
   // Run the App
   runApp(MyApp(isar: isar));

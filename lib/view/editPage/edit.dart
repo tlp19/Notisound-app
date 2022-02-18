@@ -57,13 +57,10 @@ class _SubscriptionFormState extends State<SubscriptionForm> {
     if (value == null || value.isEmpty) {
       return 'Please enter some text';
     }
-    if (value.contains(RegExp(r'[A-Z]'))) {
-      return 'Only lowercase letters';
+    if (RegExp(r'^[a-zA-Z0-9-_.~%]{1,900}$').hasMatch(value)) {
+      return null;
     }
-    if (value.contains('/')) {
-      return 'Cannot contain a "/"';
-    }
-    return null;
+    return 'Not a valid input';
   }
 
   @override
@@ -124,7 +121,7 @@ class _SubscriptionFormState extends State<SubscriptionForm> {
               size: 30,
               label: "Add device and/or topic",
               icon: Icons.add,
-              color: Color.fromARGB(255, 5, 107, 190),
+              color: const Color.fromARGB(255, 5, 107, 190),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   DeviceDatabaseService().addTopicToDevicesDB(

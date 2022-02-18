@@ -1,12 +1,12 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
-import 'package:return_success_4_app/view/general_widgets.dart';
+import 'package:return_success_4_app/view/homePage/homepage_widgets.dart';
 
 import 'messageHistoryList.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({required this.isar, Key? key}) : super(key: key);
+  const HomePage({required this.isar, Key? key}) : super(key: key);
 
   final Isar isar;
 
@@ -41,57 +41,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget header() {
-      return SizedBox(
-        height: (MediaQuery.of(context).size.height / 4),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              const Text(
-                'Notisound',
-                style: TextStyle(
-                  fontSize: 42,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  iconButton(
-                    icon: Icons.refresh_outlined,
-                    color: const Color.fromARGB(255, 134, 194, 196),
-                    onPressed: () {
-                      Navigator.popAndPushNamed(context, '/');
-                    },
-                  ),
-                  const SizedBox(width: 24),
-                  iconButton(
-                      icon: Icons.settings_outlined,
-                      color: const Color.fromARGB(255, 187, 196, 207),
-                      onPressed: () async {
-                        Navigator.pushNamed(
-                          context,
-                          '/settings',
-                        );
-                      }),
-                ],
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            header(),
+            header(context),
             const SizedBox(
               height: 16,
             ),

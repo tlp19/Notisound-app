@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
-import 'package:return_success_4_app/controller/messageDatabaseService.dart';
 import 'package:return_success_4_app/controller/notificationService.dart';
 import 'package:return_success_4_app/view/general_widgets.dart';
 
 import '../../controller/deviceDatabaseService.dart';
 import '../../model/deviceModel.dart';
 
+/// Builds a card from a given Device object
 Widget deviceCard(Isar isar, Device device) {
   return Container(
     margin: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
@@ -63,7 +63,7 @@ Widget deviceCard(Isar isar, Device device) {
         child: iconButton(
             size: 30,
             icon: Icons.delete_outlined,
-            color: Color.fromARGB(255, 190, 63, 63),
+            color: const Color.fromARGB(255, 190, 63, 63),
             onPressed: () {
               DeviceDatabaseService()
                   .delete1DeviceFromDB(device.deviceId, isar);
@@ -79,6 +79,7 @@ Widget deviceCard(Isar isar, Device device) {
   );
 }
 
+/// Builds a list of all Devices stored
 class SubscribedList extends StatelessWidget {
   const SubscribedList({required this.isar, Key? key}) : super(key: key);
 

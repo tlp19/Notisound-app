@@ -43,8 +43,6 @@ class InfoPage extends StatelessWidget {
                       var urllaunchable = await canLaunch(url);
                       if (urllaunchable) {
                         await launch(url);
-                      } else {
-                        print("URL can't be launched.");
                       }
                     }),
             ]))

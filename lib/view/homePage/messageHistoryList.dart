@@ -7,7 +7,8 @@ import '../../model/messageModel.dart';
 import 'homepage_widgets.dart';
 
 class MessagesHistoryListView extends StatelessWidget {
-  MessagesHistoryListView({required this.isar, Key? key}) : super(key: key);
+  const MessagesHistoryListView({required this.isar, Key? key})
+      : super(key: key);
 
   final Isar isar;
 
