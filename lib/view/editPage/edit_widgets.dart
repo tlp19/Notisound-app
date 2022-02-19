@@ -28,7 +28,7 @@ Widget deviceCard(Isar isar, Device device) {
         child: Icon(
           Icons.developer_board,
           size: 40,
-          color: Color.fromARGB(255, 55, 76, 134),
+          color: Color.fromARGB(255, 48, 48, 48),
         ),
       ),
       // Message

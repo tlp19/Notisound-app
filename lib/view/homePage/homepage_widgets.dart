@@ -13,7 +13,7 @@ Widget header(BuildContext context) {
           const Text(
             'Notisound',
             style: TextStyle(
-              fontSize: 42,
+              fontSize: 40,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -25,7 +25,7 @@ Widget header(BuildContext context) {
             children: [
               iconButton(
                 icon: Icons.refresh_outlined,
-                color: const Color.fromARGB(255, 134, 194, 196),
+                color: Color.fromARGB(255, 126, 206, 195),
                 onPressed: () {
                   Navigator.popAndPushNamed(context, '/');
                 },
@@ -33,7 +33,7 @@ Widget header(BuildContext context) {
               const SizedBox(width: 24),
               iconButton(
                   icon: Icons.settings_outlined,
-                  color: const Color.fromARGB(255, 187, 196, 207),
+                  color: const Color.fromARGB(255, 165, 174, 185),
                   onPressed: () async {
                     Navigator.pushNamed(
                       context,
@@ -75,7 +75,7 @@ Widget messageCard(
         child: Icon(
           icon,
           size: 40,
-          color: const Color.fromARGB(255, 199, 96, 28),
+          color: const Color.fromARGB(255, 48, 48, 48),
         ),
       ),
       // Message

@@ -87,7 +87,7 @@ class _SubscriptionFormState extends State<SubscriptionForm> {
           children: [
             Row(children: [
               Flexible(
-                flex: 2,
+                flex: 4,
                 child: TextFormField(
                   validator: formValidator,
                   controller: textController1,
@@ -102,7 +102,7 @@ class _SubscriptionFormState extends State<SubscriptionForm> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Flexible(
-                flex: 3,
+                flex: 5,
                 child: TextFormField(
                   validator: formValidator,
                   controller: textController2,
