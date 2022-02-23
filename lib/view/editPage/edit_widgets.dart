@@ -51,7 +51,13 @@ Widget deviceCard(Isar isar, Device device) {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: device.topics.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Text("  / " + device.topics[index]);
+                    return Row(children: [
+                      const Text(
+                        "using mode: ",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      Text(device.topics[index]),
+                    ]);
                   })
             ],
           ),

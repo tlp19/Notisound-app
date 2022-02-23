@@ -24,7 +24,12 @@ class InfoPage extends StatelessWidget {
                 height: 8,
               ),
               const Text(
-                  "This app is to be used in conjunction with a compatible device. Once you have set-up your device and added it to the app, you will receive notifications for specific sound events happening in your home. For exemple, you could put your device next to your interphone and receive notifications on your phone whenever your doorbell rings. This can also be used for a growing list of other sound events, such as fire alarms going off or laundry machines finishing their cycles."),
+                  "This app is to be used in conjunction with a compatible device. Once you have set-up your device and added it to the app, you will receive notifications for specific sound events happening in your home."),
+              const SizedBox(
+                height: 8,
+              ),
+              const Text(
+                  "For exemple, you could put your device next to your interphone and receive notifications on your phone whenever your doorbell rings. This can also be used for a growing list of other sound events, such as fire alarms going off."),
               const SizedBox(
                 height: 24,
               ),
@@ -34,7 +39,12 @@ class InfoPage extends StatelessWidget {
                 height: 8,
               ),
               const Text(
-                  "The app can be used by anyone, with an emphasis on people with hearing difficulties. This allows them to receive visual clues of sound events happening around them and in their home. This can of course also be used more generally as a relay for all these sound events, for example to alert you that someone is at your door when you are in a remote room and can't hear the doorbell, and to alert you of a potential fire when you are away from home ."),
+                  "The app can be used by anyone, with an emphasis on people with hearing difficulties. This allows them to receive visual cues of sound events happening around them and in their home."),
+              const SizedBox(
+                height: 8,
+              ),
+              const Text(
+                  "This can of course also be used more generally as a relay for all these sound events, for example to alert you that someone is at your door when you are in a remote room and can't hear the doorbell, or to alert you of a potential fire when you are away from home ."),
               const SizedBox(
                 height: 24,
               ),
@@ -44,7 +54,12 @@ class InfoPage extends StatelessWidget {
                 height: 8,
               ),
               const Text(
-                  'Add your devices in the "Manage my devices" section, providing both your unique device ID (found on your device or in the documentation) and the topics that you want to listen to. This includes, but is not limited to, the following: "doorbell", "fire_alarm", "laudry". For more topics and use-cases of your device, please refer to the official documentation. '),
+                  'Add your devices in the "Manage my devices" section, providing both your unique device ID (found on your device or in the documentation) and choosing the detection mode that you want your device to operate on.'),
+              const SizedBox(
+                height: 8,
+              ),
+              const Text(
+                  "For more detailed use-cases of your device, please refer to the official documentation."),
               const SizedBox(
                 height: 24,
               ),

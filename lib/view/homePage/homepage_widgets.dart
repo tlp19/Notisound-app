@@ -88,10 +88,14 @@ Widget messageCard(
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    message.category + "  •  " + message.title,
-                    style: const TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.bold),
+                  Expanded(
+                    child: Text(
+                      message.category + "  •  " + message.title,
+                      style: const TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.bold),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   Text(
                     timeago.format(message.dateTime, locale: 'en_short'),

@@ -46,6 +46,8 @@ class _SubscriptionFormState extends State<SubscriptionForm> {
 
   final _formKey = GlobalKey<FormState>();
 
+  String? selectedValue;
+
   @override
   void initState() {
     super.initState();
@@ -85,50 +87,62 @@ class _SubscriptionFormState extends State<SubscriptionForm> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(children: [
-              Flexible(
-                flex: 4,
-                child: TextFormField(
-                  validator: formValidator,
-                  controller: textController1,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    label: Text("Device ID"),
-                  ),
-                ),
+            // DeviceID Text Field
+            TextFormField(
+              validator: formValidator,
+              controller: textController1,
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                label: Text("Device ID:"),
               ),
-              const Text(
-                "  /  ",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Flexible(
-                flex: 5,
-                child: TextFormField(
-                  validator: formValidator,
-                  controller: textController2,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    label: Text("Topic"),
-                    hintText: 'doorbell, fire_alarm, ...',
-                  ),
-                ),
-              ),
-            ]),
-            const SizedBox(
-              height: 8,
             ),
+            // Topic DropDown Menu
+            Row(
+              children: [
+                const Text(
+                  "Detection mode:  ",
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                DropdownButton(
+                    value: selectedValue,
+                    hint: const Text("Choose one    "),
+                    items: const [
+                      DropdownMenuItem(
+                        child: Text("Doorbell"),
+                        value: "doorbell",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Fire Alarm"),
+                        value: "fire_alarm",
+                      ),
+                    ],
+                    onChanged: (String? value) {
+                      setState(() {
+                        selectedValue = value;
+                      });
+                    }),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            // Add to devices button
             iconButton(
               size: 30,
-              label: "Add device and/or topic",
+              label: "Add new device and/or mode",
               icon: Icons.add,
               color: const Color.fromARGB(255, 5, 107, 190),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  DeviceDatabaseService().addTopicToDevicesDB(
-                      widget.isar, textController1.text, textController2.text);
-                  final newTopic =
-                      textController1.text + "_" + textController2.text;
-                  NotificationService().subscribeToTopics([newTopic]);
+                  if (selectedValue != null) {
+                    DeviceDatabaseService().addTopicToDevicesDB(
+                        widget.isar, textController1.text, selectedValue!);
+                    final newTopic =
+                        textController1.text + "_" + selectedValue!;
+                    NotificationService().subscribeToTopics([newTopic]);
+                  }
                 }
               },
             ),
