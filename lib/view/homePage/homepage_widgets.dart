@@ -32,6 +32,16 @@ Widget header(BuildContext context) {
               ),
               const SizedBox(width: 24),
               iconButton(
+                  icon: Icons.analytics_outlined,
+                  color: Color.fromARGB(255, 24, 156, 101),
+                  onPressed: () async {
+                    Navigator.pushNamed(
+                      context,
+                      '/analytics',
+                    );
+                  }),
+              const SizedBox(width: 24),
+              iconButton(
                   icon: Icons.settings_outlined,
                   color: const Color.fromARGB(255, 165, 174, 185),
                   onPressed: () async {

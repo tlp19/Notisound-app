@@ -9,6 +9,7 @@ import 'package:return_success_4_app/view/homepage/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'model/messageModel.dart';
+import 'view/analyticsPage/analytics.dart';
 import 'view/editPage/edit.dart';
 import 'view/infoPage/info.dart';
 import 'view/settingsPage/settings.dart';
@@ -92,6 +93,7 @@ class MyApp extends StatelessWidget {
         '/settings': (context) => SettingsPage(isar: isar),
         '/info': (context) => const InfoPage(),
         '/edit': (context) => EditPage(isar: isar),
+        '/analytics': (context) => AnalyticsPage(isar: isar),
       },
     );
   }
