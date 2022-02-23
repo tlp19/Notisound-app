@@ -4,7 +4,7 @@
 
 This app is to be used in conjunction with a compatible device. Once you have set-up your device and added it to the app, you will receive notifications for specific sound events happening in your home.
 
-For exemple, you could put your device next to your interphone and receive notifications on your phone whenever your doorbell rings. This can also be used for a growing list of other sound events, such as fire alarms going off.
+For example, you could put your device next to your interphone and receive notifications on your phone whenever your doorbell rings. This can also be used for a growing list of other sound events, such as fire alarms going off.
 
 ## What/who is it for?
 
