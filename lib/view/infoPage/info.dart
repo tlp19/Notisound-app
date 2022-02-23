@@ -29,7 +29,7 @@ class InfoPage extends StatelessWidget {
                 height: 8,
               ),
               const Text(
-                  "For exemple, you could put your device next to your interphone and receive notifications on your phone whenever your doorbell rings. This can also be used for a growing list of other sound events, such as fire alarms going off."),
+                  "For example, you could put your device next to your interphone and receive notifications on your phone whenever your doorbell rings. This can also be used for a growing list of other sound events, such as fire alarms going off."),
               const SizedBox(
                 height: 24,
               ),
@@ -44,7 +44,7 @@ class InfoPage extends StatelessWidget {
                 height: 8,
               ),
               const Text(
-                  "This can of course also be used more generally as a relay for all these sound events, for example to alert you that someone is at your door when you are in a remote room and can't hear the doorbell, or to alert you of a potential fire when you are away from home ."),
+                  "This can of course also be used more generally as a relay for all these sound events, for example to alert you that someone is at your door when you are in a remote room and can't hear the doorbell, or to alert you of a potential fire when you are away from home."),
               const SizedBox(
                 height: 24,
               ),
