@@ -24,12 +24,12 @@ For more detailed use-cases of your device, please refer to the official documen
 
 This app was developped as part of the first coursework for Embedded Systems 21/22 (EIE MEng @ Imperial College London) of the group returnSuccess4.
 
+### Development
+
+The app was programmed in Dart using the Flutter framework. It was developped and debugged using both a Pixel 5 and a Pixel 4 running Android 12 (virtual devices), and was tested using a Galaxy S8 running Android 9 (real device).
+
 ### Compatibility
 
 The app currently only fully supports Android devices.
 
 Some features might work on iOS, but the app is not in a usable state (e.g. notifications do not work).
-
-### Development
-
-The app was programmed in Dart using the Flutter framework. It was developped and debugged using both a Pixel 5 and a Pixel 4 running Android 12 (virtual devices), and was tested using a Galaxy S8 running Android 9 (real device).
