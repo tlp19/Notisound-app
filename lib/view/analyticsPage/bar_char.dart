@@ -11,6 +11,7 @@ class AnalyticsBarChart extends StatefulWidget {
       required this.category,
       required this.isar,
       this.colorProfile,
+      required this.demoMode,
       Key? key})
       : super(key: key);
 
@@ -18,6 +19,7 @@ class AnalyticsBarChart extends StatefulWidget {
   final String category;
   final Isar isar;
   final List<Color>? colorProfile;
+  final bool demoMode;
 
   @override
   State<StatefulWidget> createState() => AnalyticsBarChartState();
@@ -67,8 +69,10 @@ class AnalyticsBarChartState extends State<AnalyticsBarChart> {
                           .map((value) => countMessageMatchMonth(
                               snapshot.data!, value.toInt()))
                           .toList();
-                      // Uncomment for dummy data, Comment for real data:
-                      //data = [9, 12, 8, 16, 18, 10, 5];
+                      if (widget.demoMode) {
+                        data = [9, 12, 8, 16, 18, 10, 5];
+                        data[0] += countMessageMatchMonth(snapshot.data!, 0);
+                      }
                       return _BarChart(
                         data: data,
                         colorProfile: widget.colorProfile,

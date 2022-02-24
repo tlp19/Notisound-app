@@ -7,10 +7,24 @@ import 'confusion_matrix.dart';
 
 /// A page that displays detailed information about the usage of the app,
 /// as well as the confusion matrix of the NN model used by the devices.
-class AnalyticsPage extends StatelessWidget {
+class AnalyticsPage extends StatefulWidget {
   const AnalyticsPage({required this.isar, Key? key}) : super(key: key);
 
   final Isar isar;
+
+  @override
+  State<AnalyticsPage> createState() => _AnalyticsPageState();
+}
+
+class _AnalyticsPageState extends State<AnalyticsPage> {
+  //Boolean to display dummy data in the charts
+  late bool demoMode;
+
+  @override
+  void initState() {
+    demoMode = false;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,21 +62,48 @@ class AnalyticsPage extends StatelessWidget {
               AnalyticsBarChart(
                 label: "Doorbell alerts in the past months:",
                 category: "Doorbell",
-                isar: isar,
+                isar: widget.isar,
                 colorProfile: const [
                   Colors.lightBlueAccent,
                   Colors.greenAccent
                 ],
+                demoMode: demoMode,
               ),
               // Bar chart for 'Fire Alarm' messages analytics
               AnalyticsBarChart(
-                  label: "Fire Alarm alerts in the past months:",
-                  category: "Fire Alarm",
-                  isar: isar,
-                  colorProfile: const [
-                    Colors.deepOrangeAccent,
-                    Colors.orangeAccent
-                  ]),
+                label: "Fire Alarm alerts in the past months:",
+                category: "Fire Alarm",
+                isar: widget.isar,
+                colorProfile: const [
+                  Colors.deepOrangeAccent,
+                  Colors.orangeAccent
+                ],
+                demoMode: demoMode,
+              ),
+              // Demo mode toggle
+              Padding(
+                padding: EdgeInsets.all(24),
+                child: Row(
+                  children: [
+                    const Text(
+                      "Demo mode:",
+                      style: TextStyle(
+                        color: Colors.blueGrey,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Checkbox(
+                        activeColor: Colors.blueGrey,
+                        value: demoMode,
+                        onChanged: (bool? newValue) {
+                          setState(() {
+                            demoMode = newValue!;
+                          });
+                        }),
+                  ],
+                ),
+              )
             ],
           ),
         ),
