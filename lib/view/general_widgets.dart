@@ -68,6 +68,8 @@ Widget buildPopupDialog(
     required String buttonText,
     required Function onButtonPressed}) {
   return AlertDialog(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 10),
     title: Text(dialogTitle),
     content: Column(
       mainAxisSize: MainAxisSize.min,
