@@ -19,23 +19,23 @@ class AnalyticsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Confusion matrix:",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 16,
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0, bottom: 4.0),
+                child: Text(
+                  "Confusion matrix:",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
               ),
               confusionMatrix(),
               const SizedBox(
                 height: 48,
               ),
-              const Text(
-                "Analytics:",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 16,
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: Text(
+                  "Analytics:",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
               ),
               analyticsChart(isar),
             ],
