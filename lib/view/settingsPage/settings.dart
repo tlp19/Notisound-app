@@ -60,6 +60,7 @@ class SettingsPage extends StatelessWidget {
                       buttonText: "Clear all",
                       onButtonPressed: () async {
                         await MessageDatabaseService().clearMessagesDB(isar);
+                        Navigator.pop(context);
                       }),
                 );
               },
