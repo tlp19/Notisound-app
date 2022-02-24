@@ -24,7 +24,7 @@ Widget header(BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               iconButton(
-                icon: Icons.refresh_outlined,
+                icon: Icons.refresh_rounded,
                 color: const Color.fromARGB(255, 126, 206, 195),
                 onPressed: () {
                   Navigator.popAndPushNamed(context, '/');
@@ -32,8 +32,8 @@ Widget header(BuildContext context) {
               ),
               const SizedBox(width: 24),
               iconButton(
-                  icon: Icons.analytics_outlined,
-                  color: const Color.fromARGB(255, 24, 156, 101),
+                  icon: Icons.bar_chart_rounded,
+                  color: const Color.fromARGB(255, 43, 133, 118),
                   onPressed: () async {
                     Navigator.pushNamed(
                       context,
@@ -42,7 +42,7 @@ Widget header(BuildContext context) {
                   }),
               const SizedBox(width: 24),
               iconButton(
-                  icon: Icons.settings_outlined,
+                  icon: Icons.settings_rounded,
                   color: const Color.fromARGB(255, 165, 174, 185),
                   onPressed: () async {
                     Navigator.pushNamed(

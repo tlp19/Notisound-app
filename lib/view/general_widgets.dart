@@ -16,6 +16,7 @@ AppBar transparentAppBar() {
 Widget iconButton(
     {String? label,
     double size = 45,
+    double iconRatio = 2.0 / 3.0,
     required IconData icon,
     required Color color,
     required Function onPressed}) {
@@ -36,7 +37,7 @@ Widget iconButton(
             ),
             child: Icon(
               icon,
-              size: (size * 2 / 3),
+              size: (size * iconRatio),
               color: Colors.white,
             )),
         // Label (if any)

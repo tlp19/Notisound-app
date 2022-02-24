@@ -137,7 +137,8 @@ class _SubscriptionFormState extends State<SubscriptionForm> {
             iconButton(
               size: 30,
               label: "Add new device and/or mode",
-              icon: Icons.add,
+              icon: Icons.add_rounded,
+              iconRatio: 4.0 / 5.0,
               color: const Color.fromARGB(255, 5, 107, 190),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
