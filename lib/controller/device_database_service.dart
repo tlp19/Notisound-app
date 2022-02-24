@@ -1,8 +1,9 @@
 import 'package:isar/isar.dart';
 import 'package:return_success_4_app/model/device_model.dart';
 
+/// A class handling all transactions to the 'devices' DB using Isar.
 class DeviceDatabaseService {
-  /// Add the entry to the DB in Isar
+  /// Add the device 'entry' to the DB
   Future<void> addToDevicesDB(Isar isar, Device entry) async {
     // Storing the device in the DB
     int newKey = await isar.writeTxn((isar) async {
@@ -13,7 +14,8 @@ class DeviceDatabaseService {
         "Adding device to devices DB at key: $newKey with deviceId: ${entry.deviceId}");
   }
 
-  /// Add the topic to the device in the DB (Create and Update)
+  /// Add in the DB the given 'topic' to the list of topics of the device with the given 'deviceId'.
+  /// Or if no device exists in the DB yet, create one.
   Future<void> addTopicToDevicesDB(
       Isar isar, String deviceId, String topic) async {
     // Find the device if it already exists
@@ -42,12 +44,12 @@ class DeviceDatabaseService {
     }
   }
 
-  /// Stream all elements of the DB
+  /// Stream all elements of the 'devices' DB
   Stream<List<Device>> streamDevices(Isar isar) {
     return isar.devices.where().build().watch(initialReturn: true);
   }
 
-  /// Clear the DB
+  /// Remove 1 device from the DB
   Future<void> delete1DeviceFromDB(String deviceId, Isar isar) async {
     // Find the device if it already exists
     final queriedDevice =
@@ -62,7 +64,7 @@ class DeviceDatabaseService {
     }
   }
 
-  /// Clear all the DB
+  /// Clear all the entries of the 'devices' DB!
   Future<void> clearDevicesDB(Isar isar) async {
     //Clear all messages
     await isar.writeTxn((isar) async {

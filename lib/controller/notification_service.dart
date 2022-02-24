@@ -1,6 +1,9 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+/// A class handling most matters related to notification setup
+/// and topic subscription/unsubscription.
+/// The callback for messages received in the foreground, background and terminated state are defined in 'main()'.
 class NotificationService {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
@@ -9,8 +12,6 @@ class NotificationService {
     String? token = await messaging.getToken();
     print(token);
   }
-
-  //
 
   /// Request permissions to send notifications on iOS (not needed for Android)
   Future<void> requestIOSPermissions() async {

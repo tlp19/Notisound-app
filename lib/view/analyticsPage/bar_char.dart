@@ -4,7 +4,7 @@ import 'package:isar/isar.dart';
 import 'package:return_success_4_app/model/message_model.dart';
 import 'package:return_success_4_app/view/general_functions.dart';
 
-/// A card displaying analytics on a chart, with a label
+/// A card displaying analytics on a chart, with a label.
 class AnalyticsBarChart extends StatefulWidget {
   const AnalyticsBarChart(
       {required this.label,

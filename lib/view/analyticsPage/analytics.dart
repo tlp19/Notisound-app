@@ -5,6 +5,8 @@ import '../general_widgets.dart';
 import 'bar_char.dart';
 import 'confusion_matrix.dart';
 
+/// A page that displays detailed information about the usage of the app,
+/// as well as the confusion matrix of the NN model used by the devices.
 class AnalyticsPage extends StatelessWidget {
   const AnalyticsPage({required this.isar, Key? key}) : super(key: key);
 
@@ -21,6 +23,7 @@ class AnalyticsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Title
               const Padding(
                 padding: EdgeInsets.only(left: 8.0, bottom: 4.0),
                 child: Text(
@@ -28,10 +31,12 @@ class AnalyticsPage extends StatelessWidget {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
-              confusionMatrix(),
+              // Confusion matrix card of the NN model
+              confusionMatrixCard(),
               const SizedBox(
                 height: 48,
               ),
+              // Title
               const Padding(
                 padding: EdgeInsets.only(left: 8.0, bottom: 4.0),
                 child: Text(
@@ -39,6 +44,7 @@ class AnalyticsPage extends StatelessWidget {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
+              // Bar chart for 'Doorbell' messages analytics
               AnalyticsBarChart(
                 label: "Doorbell alerts in the past months:",
                 category: "Doorbell",
@@ -48,6 +54,7 @@ class AnalyticsPage extends StatelessWidget {
                   Colors.greenAccent
                 ],
               ),
+              // Bar chart for 'Fire Alarm' messages analytics
               AnalyticsBarChart(
                   label: "Fire Alarm alerts in the past months:",
                   category: "Fire Alarm",

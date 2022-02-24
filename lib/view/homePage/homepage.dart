@@ -5,9 +5,12 @@ import 'package:return_success_4_app/view/homePage/homepage_widgets.dart';
 
 import 'message_history_list.dart';
 
+/// Homepage of the app
 class HomePage extends StatefulWidget {
-  const HomePage({required this.isar, Key? key}) : super(key: key);
+  const HomePage({required this.title, required this.isar, Key? key})
+      : super(key: key);
 
+  final String title;
   final Isar isar;
 
   @override
@@ -46,10 +49,12 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            header(context),
+            // Homepage header
+            HomepageHeader(title: widget.title),
             const SizedBox(
               height: 16,
             ),
+            // History list of previously received Messages
             MessagesHistoryListView(isar: widget.isar),
           ],
         ),

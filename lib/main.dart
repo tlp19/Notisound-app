@@ -76,20 +76,24 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({required this.isar, Key? key}) : super(key: key);
 
+  /// Name of the app on the Homepage
+  final String appName = "Notisound";
+
+  /// Isar DB instance passed and used around the app
   final Isar isar;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Notisound',
+      title: appName,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         backgroundColor: Colors.white,
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(isar: isar),
+        '/': (context) => HomePage(title: appName, isar: isar),
         '/settings': (context) => SettingsPage(isar: isar),
         '/info': (context) => const InfoPage(),
         '/edit': (context) => EditPage(isar: isar),

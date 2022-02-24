@@ -1,5 +1,9 @@
 import '../model/message_model.dart';
 
+/// Converts the number of a month 'monthInt'
+/// into either the full name of the month
+/// or only its first 3 letters
+/// according to the 'initials' bool.
 String monthToWord(int monthInt, bool initials) {
   String month;
   int x = (monthInt - 1) % 12 + 1;
@@ -37,6 +41,8 @@ String monthToWord(int monthInt, bool initials) {
   }
 }
 
+/// Count the number of Messages which were sent during the month
+/// with the offset 'monthOffset' from the current month (in the past)
 double countMessageMatchMonth(List<Message> list, int monthOffset) {
   return list
       .where((element) =>

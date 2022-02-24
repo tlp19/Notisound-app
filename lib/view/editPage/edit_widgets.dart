@@ -85,7 +85,7 @@ Widget deviceCard(Isar isar, Device device) {
   );
 }
 
-/// Builds a list of all Devices stored
+/// Builds a list of all Devices stored by the app
 class SubscribedList extends StatelessWidget {
   const SubscribedList({required this.isar, Key? key}) : super(key: key);
 

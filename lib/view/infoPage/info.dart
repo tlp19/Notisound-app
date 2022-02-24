@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../general_widgets.dart';
 
+/// A page that displays text information about the app
 class InfoPage extends StatelessWidget {
   const InfoPage({Key? key}) : super(key: key);
 

@@ -4,6 +4,7 @@ import 'package:return_success_4_app/controller/message_database_service.dart';
 
 import '../general_widgets.dart';
 
+/// Settings page of the app
 class SettingsPage extends StatelessWidget {
   const SettingsPage({required this.isar, Key? key}) : super(key: key);
 

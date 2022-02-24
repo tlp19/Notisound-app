@@ -6,6 +6,7 @@ import 'package:return_success_4_app/view/editPage/edit_widgets.dart';
 import '../../controller/device_database_service.dart';
 import '../general_widgets.dart';
 
+/// A page that lets users manage their devices, i.e. subscribe and unsubscribe to devices and topics
 class EditPage extends StatelessWidget {
   const EditPage({required this.isar, Key? key}) : super(key: key);
 
@@ -20,6 +21,7 @@ class EditPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            // Form to subscribe to new devices
             SubscriptionForm(isar: isar),
             const Padding(
               padding: EdgeInsets.fromLTRB(16, 24, 8, 16),
@@ -28,6 +30,7 @@ class EditPage extends StatelessWidget {
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
             ),
+            // List of all devices that the app is subscribed to
             SubscribedList(isar: isar),
           ],
         ),
@@ -36,6 +39,8 @@ class EditPage extends StatelessWidget {
   }
 }
 
+/// A card containing a Form allowing the user to subscribe
+/// to the notifications of new devices
 class SubscriptionForm extends StatefulWidget {
   const SubscriptionForm({required this.isar, Key? key}) : super(key: key);
 

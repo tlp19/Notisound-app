@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-Widget confusionMatrix() {
+/// A card that displays a confusion matrix (a table)
+Widget confusionMatrixCard() {
   return Container(
     margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
     padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
@@ -54,6 +55,7 @@ Widget confusionMatrix() {
   );
 }
 
+/// Customizable cell type used for displaying text in tables
 Widget cell({required String text, FontWeight? weight, Color? color}) {
   return Padding(
     padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),

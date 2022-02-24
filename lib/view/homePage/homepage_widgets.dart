@@ -3,62 +3,77 @@ import 'package:timeago/timeago.dart' as timeago;
 import '../../model/message_model.dart';
 import '../general_widgets.dart';
 
-Widget header(BuildContext context) {
-  return SizedBox(
-    height: (MediaQuery.of(context).size.height / 4),
-    child: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          const Text(
-            'Notisound',
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              iconButton(
-                icon: Icons.refresh_rounded,
-                color: const Color.fromARGB(255, 126, 206, 195),
-                onPressed: () {
-                  Navigator.popAndPushNamed(context, '/');
-                },
+/// A header for the Homepage of the app with customizable 'title'.
+class HomepageHeader extends StatelessWidget {
+  const HomepageHeader({required this.title, Key? key}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: (MediaQuery.of(context).size.height / 4) + 10,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // Title of the app
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.w500,
               ),
-              const SizedBox(width: 24),
-              iconButton(
-                  icon: Icons.bar_chart_rounded,
-                  color: const Color.fromARGB(255, 43, 133, 118),
-                  onPressed: () async {
-                    Navigator.pushNamed(
-                      context,
-                      '/analytics',
-                    );
-                  }),
-              const SizedBox(width: 24),
-              iconButton(
-                  icon: Icons.settings_rounded,
-                  color: const Color.fromARGB(255, 165, 174, 185),
-                  onPressed: () async {
-                    Navigator.pushNamed(
-                      context,
-                      '/settings',
-                    );
-                  }),
-            ],
-          ),
-        ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            // Buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Refresh
+                iconButton(
+                  icon: Icons.refresh_rounded,
+                  color: const Color.fromARGB(255, 126, 206, 195),
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, '/');
+                  },
+                ),
+                const SizedBox(width: 24),
+
+                // Analytics
+                iconButton(
+                    icon: Icons.bar_chart_rounded,
+                    color: const Color.fromARGB(255, 43, 133, 118),
+                    onPressed: () async {
+                      Navigator.pushNamed(
+                        context,
+                        '/analytics',
+                      );
+                    }),
+                const SizedBox(width: 24),
+
+                // Settings
+                iconButton(
+                    icon: Icons.settings_rounded,
+                    color: const Color.fromARGB(255, 165, 174, 185),
+                    onPressed: () async {
+                      Navigator.pushNamed(
+                        context,
+                        '/settings',
+                      );
+                    }),
+              ],
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
-/// A card that displays a message of type Message
+/// A card that displays a Message object
 Widget messageCard(
     {required Message message,
     required IconData icon,
