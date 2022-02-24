@@ -17,11 +17,16 @@ class EditPage extends StatelessWidget {
       appBar: transparentAppBar(),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SubscriptionForm(isar: isar),
-            const SizedBox(
-              height: 16,
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16, 24, 8, 16),
+              child: Text(
+                "My devices:",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
             ),
             SubscribedList(isar: isar),
           ],

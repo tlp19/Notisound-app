@@ -98,20 +98,26 @@ class SubscribedList extends StatelessWidget {
       builder: (context, AsyncSnapshot<List<Device>> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data!.isEmpty) {
-            return Column(children: [
-              SizedBox(
-                height: (MediaQuery.of(context).size.height / 5),
+            return SizedBox(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Text(
+                    "No devices registered yet.",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    "Add one using the form above.",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                ],
               ),
-              const Text(
-                "No devices registered yet.",
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                "Add one using the form above.",
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-            ]);
+            );
           } else {
             return ListView.builder(
               reverse: true,
