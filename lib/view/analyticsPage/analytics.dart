@@ -48,9 +48,6 @@ class AnalyticsPage extends StatelessWidget {
                   Colors.greenAccent
                 ],
               ),
-              const SizedBox(
-                height: 12,
-              ),
               AnalyticsBarChart(
                   label: "Fire Alarm alerts in the past months:",
                   category: "Fire Alarm",

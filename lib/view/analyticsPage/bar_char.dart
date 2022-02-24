@@ -27,7 +27,7 @@ class AnalyticsBarChartState extends State<AnalyticsBarChart> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+        margin: const EdgeInsets.all(8),
         padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -67,6 +67,8 @@ class AnalyticsBarChartState extends State<AnalyticsBarChart> {
                           .map((value) => countMessageMatchMonth(
                               snapshot.data!, value.toInt()))
                           .toList();
+                      // Uncomment for dummy data, Comment for real data:
+                      //data = [9, 12, 8, 16, 18, 10, 5];
                       return _BarChart(
                         data: data,
                         colorProfile: widget.colorProfile,
