@@ -74,7 +74,7 @@ Widget messageCard(
         BoxShadow(
           color: Color.fromARGB(25, 0, 0, 0),
           offset: Offset(2, 2),
-          blurRadius: 5,
+          blurRadius: 8,
         ),
       ],
     ),

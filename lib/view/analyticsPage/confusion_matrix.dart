@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
-import 'package:return_success_4_app/view/general_widgets.dart';
-
-import '../../controller/messageDatabaseService.dart';
-import '../../model/messageModel.dart';
 
 Widget confusionMatrix() {
   return Container(
@@ -15,7 +10,7 @@ Widget confusionMatrix() {
       boxShadow: [
         BoxShadow(
           color: Color.fromARGB(25, 0, 0, 0),
-          offset: Offset(2, 2),
+          offset: Offset(0, 2),
           blurRadius: 8,
         ),
       ],
@@ -68,8 +63,4 @@ Widget cell({required String text, FontWeight? weight, Color? color}) {
       style: TextStyle(fontWeight: weight, color: color),
     ),
   );
-}
-
-Widget analyticsChart(Isar isar) {
-  return Container();
 }

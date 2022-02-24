@@ -43,6 +43,7 @@ dependencies:
   isar_generator: ^2.2.0+1
   path_provider: ^2.0.9
   url_launcher: ^6.0.20
+  fl_chart: ^0.45.0
 
 
 dev_dependencies:

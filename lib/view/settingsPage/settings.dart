@@ -21,7 +21,7 @@ class SettingsPage extends StatelessWidget {
             iconButton(
                 label: "Information",
                 icon: Icons.info_outlined,
-                color: const Color.fromARGB(255, 216, 214, 99),
+                color: const Color.fromARGB(255, 223, 193, 26),
                 onPressed: () {
                   Navigator.pushNamed(
                     context,
@@ -32,7 +32,7 @@ class SettingsPage extends StatelessWidget {
             iconButton(
                 label: "Manage my devices",
                 icon: Icons.mode_edit_outlined,
-                color: const Color.fromARGB(255, 61, 116, 189),
+                color: const Color.fromARGB(255, 35, 108, 202),
                 onPressed: () {
                   Navigator.pushNamed(
                     context,
@@ -43,7 +43,7 @@ class SettingsPage extends StatelessWidget {
             iconButton(
               label: "Clear stored messages",
               icon: Icons.delete_forever_outlined,
-              color: const Color.fromARGB(255, 170, 50, 50),
+              color: const Color.fromARGB(255, 173, 35, 35),
               onPressed: () {
                 showDialog(
                   context: context,

@@ -76,8 +76,8 @@ class _SubscriptionFormState extends State<SubscriptionForm> {
         boxShadow: [
           BoxShadow(
             color: Color.fromARGB(50, 0, 0, 0),
-            offset: Offset(1, 1),
-            blurRadius: 5,
+            offset: Offset(2, 2),
+            blurRadius: 8,
           ),
         ],
       ),

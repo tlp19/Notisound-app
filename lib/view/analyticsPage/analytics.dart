@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../general_widgets.dart';
-import 'analytics_widgets.dart';
+import 'bar_char.dart';
+import 'confusion_matrix.dart';
 
 class AnalyticsPage extends StatelessWidget {
   const AnalyticsPage({required this.isar, Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class AnalyticsPage extends StatelessWidget {
                 height: 48,
               ),
               const Padding(
-                padding: EdgeInsets.only(left: 8.0),
+                padding: EdgeInsets.only(left: 8.0, bottom: 4.0),
                 child: Text(
                   "Analytics:",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
