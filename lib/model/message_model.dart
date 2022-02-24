@@ -1,6 +1,6 @@
 import 'package:isar/isar.dart';
 
-part 'messageModel.g.dart';
+part 'message_model.g.dart';
 
 @Collection()
 class Message {

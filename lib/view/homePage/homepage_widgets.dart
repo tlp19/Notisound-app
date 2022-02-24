@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import '../../model/messageModel.dart';
+import '../../model/message_model.dart';
 import '../general_widgets.dart';
 
 Widget header(BuildContext context) {

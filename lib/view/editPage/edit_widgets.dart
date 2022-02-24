@@ -4,7 +4,7 @@ import 'package:return_success_4_app/controller/notification_service.dart';
 import 'package:return_success_4_app/view/general_widgets.dart';
 
 import '../../controller/device_database_service.dart';
-import '../../model/deviceModel.dart';
+import '../../model/device_model.dart';
 
 /// Builds a card from a given Device object
 Widget deviceCard(Isar isar, Device device) {

@@ -1,4 +1,4 @@
-import '../model/messageModel.dart';
+import '../model/message_model.dart';
 
 String monthToWord(int monthInt, bool initials) {
   String month;

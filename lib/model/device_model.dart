@@ -1,6 +1,6 @@
 import 'package:isar/isar.dart';
 
-part 'deviceModel.g.dart';
+part 'device_model.g.dart';
 
 @Collection()
 class Device {

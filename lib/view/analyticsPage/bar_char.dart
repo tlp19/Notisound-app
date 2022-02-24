@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
-import 'package:return_success_4_app/model/messageModel.dart';
+import 'package:return_success_4_app/model/message_model.dart';
 import 'package:return_success_4_app/view/general_functions.dart';
 
 /// A card displaying analytics on a chart, with a label

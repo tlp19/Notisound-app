@@ -1,5 +1,5 @@
 import 'package:isar/isar.dart';
-import 'package:return_success_4_app/model/messageModel.dart';
+import 'package:return_success_4_app/model/message_model.dart';
 
 class MessageDatabaseService {
   /// Add the entry to the 'messages' DB in Isar

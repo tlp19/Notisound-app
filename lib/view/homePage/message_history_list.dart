@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 
 import '../../controller/message_database_service.dart';
-import '../../model/messageModel.dart';
+import '../../model/message_model.dart';
 import '../general_functions.dart';
 import 'homepage_widgets.dart';
 

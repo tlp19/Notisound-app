@@ -1,5 +1,5 @@
 import 'package:isar/isar.dart';
-import 'package:return_success_4_app/model/deviceModel.dart';
+import 'package:return_success_4_app/model/device_model.dart';
 
 class DeviceDatabaseService {
   /// Add the entry to the DB in Isar

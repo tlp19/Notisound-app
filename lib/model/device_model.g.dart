@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'deviceModel.dart';
+part of 'device_model.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
