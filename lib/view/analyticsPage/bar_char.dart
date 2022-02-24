@@ -2,10 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 
-Widget analyticsChart(Isar isar) {
-  return BarChartSample3();
-}
-
 class _BarChart extends StatelessWidget {
   const _BarChart({Key? key}) : super(key: key);
 
@@ -161,14 +157,14 @@ class _BarChart extends StatelessWidget {
       ];
 }
 
-class BarChartSample3 extends StatefulWidget {
-  const BarChartSample3({Key? key}) : super(key: key);
+class AnalyticsBarChart extends StatefulWidget {
+  const AnalyticsBarChart({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => BarChartSample3State();
+  State<StatefulWidget> createState() => AnalyticsBarChartState();
 }
 
-class BarChartSample3State extends State<BarChartSample3> {
+class AnalyticsBarChartState extends State<AnalyticsBarChart> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(

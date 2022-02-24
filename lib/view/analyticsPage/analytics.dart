@@ -38,7 +38,7 @@ class AnalyticsPage extends StatelessWidget {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
-              analyticsChart(isar),
+              AnalyticsBarChart(),
             ],
           ),
         ),
