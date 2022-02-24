@@ -1,19 +1,23 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
+import 'package:return_success_4_app/model/messageModel.dart';
+import 'package:return_success_4_app/view/general_functions.dart';
 
 /// A card displaying analytics on a chart, with a label
 class AnalyticsBarChart extends StatefulWidget {
   const AnalyticsBarChart(
       {required this.label,
-      required this.dataMode,
+      required this.category,
       required this.isar,
+      this.colorProfile,
       Key? key})
       : super(key: key);
 
   final String label;
-  final String dataMode;
+  final String category;
   final Isar isar;
+  final List<Color>? colorProfile;
 
   @override
   State<StatefulWidget> createState() => AnalyticsBarChartState();
@@ -40,7 +44,7 @@ class AnalyticsBarChartState extends State<AnalyticsBarChart> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 4, 4, 10),
+              padding: const EdgeInsets.fromLTRB(8, 4, 4, 30),
               child: Text(
                 widget.label,
                 style: const TextStyle(
@@ -50,7 +54,31 @@ class AnalyticsBarChartState extends State<AnalyticsBarChart> {
             ),
             AspectRatio(
               aspectRatio: 1.7,
-              child: _BarChart(isar: widget.isar, dataMode: widget.dataMode),
+              child: StreamBuilder(
+                  stream: widget.isar.messages
+                      .filter()
+                      .categoryEqualTo(widget.category)
+                      .watch(initialReturn: true),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<Message>> snapshot) {
+                    if (snapshot.hasData) {
+                      List<double> data = [0, 1, 2, 3, 4, 5, 6];
+                      data = data
+                          .map((value) => countMessageMatchMonth(
+                              snapshot.data!, value.toInt()))
+                          .toList();
+                      return _BarChart(
+                        data: data,
+                        colorProfile: widget.colorProfile,
+                      );
+                    } else {
+                      List<double> data = [0, 0, 0, 0, 0, 0, 0];
+                      return _BarChart(
+                        data: data,
+                        colorProfile: widget.colorProfile,
+                      );
+                    }
+                  }),
             )
           ],
         ));
@@ -58,14 +86,18 @@ class AnalyticsBarChartState extends State<AnalyticsBarChart> {
 }
 
 class _BarChart extends StatelessWidget {
-  const _BarChart({required this.dataMode, required this.isar, Key? key})
+  const _BarChart({required this.data, this.colorProfile, Key? key})
       : super(key: key);
 
-  final String dataMode;
-  final Isar isar;
+  final List<double> data;
+  final List<Color>? colorProfile;
 
   @override
   Widget build(BuildContext context) {
+    double max = 0;
+    for (double i in data) {
+      if (i > max) max = i;
+    }
     return BarChart(
       BarChartData(
         barTouchData: barTouchData,
@@ -74,7 +106,7 @@ class _BarChart extends StatelessWidget {
         barGroups: barGroups,
         alignment: BarChartAlignment.spaceAround,
         gridData: FlGridData(show: false),
-        maxY: 20,
+        maxY: max,
       ),
     );
   }
@@ -112,26 +144,8 @@ class _BarChart extends StatelessWidget {
             fontSize: 14,
           ),
           margin: 20,
-          getTitles: (double value) {
-            switch (value.toInt()) {
-              case 0:
-                return 'Mn';
-              case 1:
-                return 'Te';
-              case 2:
-                return 'Wd';
-              case 3:
-                return 'Tu';
-              case 4:
-                return 'Fr';
-              case 5:
-                return 'St';
-              case 6:
-                return 'Sn';
-              default:
-                return '';
-            }
-          },
+          getTitles: (double value) =>
+              monthToWord(DateTime.now().month - 6 + value.toInt(), true),
         ),
         leftTitles: SideTitles(showTitles: false),
         topTitles: SideTitles(showTitles: false),
@@ -146,70 +160,49 @@ class _BarChart extends StatelessWidget {
         BarChartGroupData(
           x: 0,
           barRods: [
-            BarChartRodData(
-                y: 8,
-                width: 12,
-                colors: [Colors.lightBlueAccent, Colors.greenAccent])
+            BarChartRodData(y: data[6], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),
         BarChartGroupData(
           x: 1,
           barRods: [
-            BarChartRodData(
-                y: 10,
-                width: 12,
-                colors: [Colors.lightBlueAccent, Colors.greenAccent])
+            BarChartRodData(y: data[5], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),
         BarChartGroupData(
           x: 2,
           barRods: [
-            BarChartRodData(
-                y: 14,
-                width: 12,
-                colors: [Colors.lightBlueAccent, Colors.greenAccent])
+            BarChartRodData(y: data[4], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),
         BarChartGroupData(
           x: 3,
           barRods: [
-            BarChartRodData(
-                y: 15,
-                width: 12,
-                colors: [Colors.lightBlueAccent, Colors.greenAccent])
+            BarChartRodData(y: data[3], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),
         BarChartGroupData(
           x: 4,
           barRods: [
-            BarChartRodData(
-                y: 13,
-                width: 12,
-                colors: [Colors.lightBlueAccent, Colors.greenAccent])
+            BarChartRodData(y: data[2], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),
         BarChartGroupData(
           x: 5,
           barRods: [
-            BarChartRodData(
-                y: 10,
-                width: 12,
-                colors: [Colors.lightBlueAccent, Colors.greenAccent])
+            BarChartRodData(y: data[1], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),
         BarChartGroupData(
           x: 6,
           barRods: [
-            BarChartRodData(
-                y: 10,
-                width: 12,
-                colors: [Colors.lightBlueAccent, Colors.greenAccent])
+            BarChartRodData(y: data[0], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),

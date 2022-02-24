@@ -33,7 +33,7 @@ Widget header(BuildContext context) {
               const SizedBox(width: 24),
               iconButton(
                   icon: Icons.analytics_outlined,
-                  color: Color.fromARGB(255, 24, 156, 101),
+                  color: const Color.fromARGB(255, 24, 156, 101),
                   onPressed: () async {
                     Navigator.pushNamed(
                       context,

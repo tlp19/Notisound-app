@@ -56,7 +56,7 @@ Widget confusionMatrix() {
 
 Widget cell({required String text, FontWeight? weight, Color? color}) {
   return Padding(
-    padding: EdgeInsets.only(top: 12.0, bottom: 12.0),
+    padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
     child: Text(
       text,
       textAlign: TextAlign.center,

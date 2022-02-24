@@ -4,6 +4,7 @@ import 'package:isar/isar.dart';
 
 import '../../controller/messageDatabaseService.dart';
 import '../../model/messageModel.dart';
+import '../general_functions.dart';
 import 'homepage_widgets.dart';
 
 class MessagesHistoryListView extends StatelessWidget {
@@ -11,36 +12,6 @@ class MessagesHistoryListView extends StatelessWidget {
       : super(key: key);
 
   final Isar isar;
-
-  String toWord(int x) {
-    if (x == 1) {
-      return "January";
-    } else if (x == 2) {
-      return "February";
-    } else if (x == 3) {
-      return "March";
-    } else if (x == 4) {
-      return "April";
-    } else if (x == 5) {
-      return "May";
-    } else if (x == 6) {
-      return "June";
-    } else if (x == 7) {
-      return "July";
-    } else if (x == 8) {
-      return "August";
-    } else if (x == 9) {
-      return "September";
-    } else if (x == 10) {
-      return "October";
-    } else if (x == 11) {
-      return "November";
-    } else if (x == 12) {
-      return "December";
-    } else {
-      return "";
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +49,9 @@ class MessagesHistoryListView extends StatelessWidget {
                                   snapshot.data![index].dateTime.day
                                           .toString() +
                                       ' ' +
-                                      toWord(
-                                          snapshot.data![index].dateTime.month),
+                                      monthToWord(
+                                          snapshot.data![index].dateTime.month,
+                                          false),
                                   style: const TextStyle(
                                       color: Colors.grey,
                                       fontWeight: FontWeight.bold),

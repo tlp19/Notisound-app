@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:isar/isar.dart';
 
 import '../general_widgets.dart';
 import 'bar_char.dart';
@@ -7,7 +8,7 @@ import 'confusion_matrix.dart';
 class AnalyticsPage extends StatelessWidget {
   const AnalyticsPage({required this.isar, Key? key}) : super(key: key);
 
-  final isar;
+  final Isar isar;
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +40,25 @@ class AnalyticsPage extends StatelessWidget {
                 ),
               ),
               AnalyticsBarChart(
-                label: "Doorbell alerts in the past weeks:",
-                dataMode: "doorbell",
+                label: "Doorbell alerts in the past months:",
+                category: "Doorbell",
                 isar: isar,
+                colorProfile: const [
+                  Colors.lightBlueAccent,
+                  Colors.greenAccent
+                ],
               ),
+              const SizedBox(
+                height: 12,
+              ),
+              AnalyticsBarChart(
+                  label: "Fire Alarm alerts in the past months:",
+                  category: "Fire Alarm",
+                  isar: isar,
+                  colorProfile: const [
+                    Colors.deepOrangeAccent,
+                    Colors.orangeAccent
+                  ]),
             ],
           ),
         ),
