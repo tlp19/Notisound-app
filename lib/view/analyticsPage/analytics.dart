@@ -38,7 +38,11 @@ class AnalyticsPage extends StatelessWidget {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
-              AnalyticsBarChart(),
+              AnalyticsBarChart(
+                label: "Doorbell alerts in the past weeks:",
+                dataMode: "doorbell",
+                isar: isar,
+              ),
             ],
           ),
         ),

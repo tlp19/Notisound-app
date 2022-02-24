@@ -2,8 +2,67 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 
+/// A card displaying analytics on a chart, with a label
+class AnalyticsBarChart extends StatefulWidget {
+  const AnalyticsBarChart(
+      {required this.label,
+      required this.dataMode,
+      required this.isar,
+      Key? key})
+      : super(key: key);
+
+  final String label;
+  final String dataMode;
+  final Isar isar;
+
+  @override
+  State<StatefulWidget> createState() => AnalyticsBarChartState();
+}
+
+class AnalyticsBarChartState extends State<AnalyticsBarChart> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+        padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromARGB(25, 0, 0, 0),
+              offset: Offset(2, 2),
+              blurRadius: 8,
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 4, 4, 10),
+              child: Text(
+                widget.label,
+                style: const TextStyle(
+                    color: Color.fromARGB(255, 70, 70, 70),
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            AspectRatio(
+              aspectRatio: 1.7,
+              child: _BarChart(isar: widget.isar, dataMode: widget.dataMode),
+            )
+          ],
+        ));
+  }
+}
+
 class _BarChart extends StatelessWidget {
-  const _BarChart({Key? key}) : super(key: key);
+  const _BarChart({required this.dataMode, required this.isar, Key? key})
+      : super(key: key);
+
+  final String dataMode;
+  final Isar isar;
 
   @override
   Widget build(BuildContext context) {
@@ -155,35 +214,4 @@ class _BarChart extends StatelessWidget {
           showingTooltipIndicators: [0],
         ),
       ];
-}
-
-class AnalyticsBarChart extends StatefulWidget {
-  const AnalyticsBarChart({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => AnalyticsBarChartState();
-}
-
-class AnalyticsBarChartState extends State<AnalyticsBarChart> {
-  @override
-  Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.7,
-      child: Container(
-          margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-          padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            boxShadow: [
-              BoxShadow(
-                color: Color.fromARGB(25, 0, 0, 0),
-                offset: Offset(2, 2),
-                blurRadius: 8,
-              ),
-            ],
-          ),
-          child: _BarChart()),
-    );
-  }
 }
