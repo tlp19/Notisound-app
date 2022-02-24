@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
-import 'package:return_success_4_app/controller/notificationService.dart';
+import 'package:return_success_4_app/controller/notification_service.dart';
 import 'package:return_success_4_app/view/editPage/edit_widgets.dart';
 
-import '../../controller/deviceDatabaseService.dart';
+import '../../controller/device_database_service.dart';
 import '../general_widgets.dart';
 
 class EditPage extends StatelessWidget {

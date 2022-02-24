@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
-import 'package:return_success_4_app/controller/notificationService.dart';
+import 'package:return_success_4_app/controller/notification_service.dart';
 import 'package:return_success_4_app/view/general_widgets.dart';
 
-import '../../controller/deviceDatabaseService.dart';
+import '../../controller/device_database_service.dart';
 import '../../model/deviceModel.dart';
 
 /// Builds a card from a given Device object

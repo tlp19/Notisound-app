@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 
-import '../../controller/messageDatabaseService.dart';
+import '../../controller/message_database_service.dart';
 import '../../model/messageModel.dart';
 import '../general_functions.dart';
 import 'homepage_widgets.dart';
@@ -15,7 +15,7 @@ class MessagesHistoryListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return StreamBuilder<List<Message>>(
       stream: MessageDatabaseService().streamMessages(isar),
       builder: (context, AsyncSnapshot<List<Message>> snapshot) {
         if (snapshot.hasData) {

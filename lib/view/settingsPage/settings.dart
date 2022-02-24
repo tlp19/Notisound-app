@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
-import 'package:return_success_4_app/controller/messageDatabaseService.dart';
+import 'package:return_success_4_app/controller/message_database_service.dart';
 
 import '../general_widgets.dart';
 
