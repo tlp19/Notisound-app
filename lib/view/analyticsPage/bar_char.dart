@@ -46,7 +46,7 @@ class AnalyticsBarChartState extends State<AnalyticsBarChart> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 4, 4, 30),
+              padding: const EdgeInsets.fromLTRB(8, 4, 4, 40),
               child: Text(
                 widget.label,
                 style: const TextStyle(
