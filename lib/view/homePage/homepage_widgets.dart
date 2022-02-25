@@ -12,7 +12,7 @@ class HomepageHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: (MediaQuery.of(context).size.height / 4) + 10,
+      height: (MediaQuery.of(context).size.height / 8) + 110,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -87,16 +87,16 @@ Widget messageCard(
       borderRadius: BorderRadius.all(Radius.circular(20)),
       boxShadow: [
         BoxShadow(
-          color: Color.fromARGB(25, 0, 0, 0),
+          color: Color.fromARGB(20, 0, 0, 0),
           offset: Offset(2, 2),
-          blurRadius: 8,
+          blurRadius: 5,
         ),
       ],
     ),
     child: Row(children: [
       // Icon
       Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(8.0),
         child: Icon(
           icon,
           size: 40,
@@ -106,12 +106,13 @@ Widget messageCard(
       // Message
       Expanded(
         child: Container(
-          padding: const EdgeInsets.fromLTRB(0, 15, 15, 15),
+          padding: const EdgeInsets.fromLTRB(0, 12, 12, 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: Text(
@@ -122,19 +123,22 @@ Widget messageCard(
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  Text(
-                    timeago.format(message.dateTime, locale: 'en_short'),
-                    style:
-                        (timeago.format(message.dateTime, locale: 'en_short') ==
-                                "now")
-                            ? const TextStyle(
-                                fontSize: 12,
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold,
-                              )
-                            : const TextStyle(
-                                fontSize: 12,
-                              ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2, left: 8, right: 1),
+                    child: Text(
+                      timeago.format(message.dateTime, locale: 'en_short'),
+                      style: (timeago.format(message.dateTime,
+                                  locale: 'en_short') ==
+                              "now")
+                          ? const TextStyle(
+                              fontSize: 12,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            )
+                          : const TextStyle(
+                              fontSize: 12,
+                            ),
+                    ),
                   ),
                 ],
               ),

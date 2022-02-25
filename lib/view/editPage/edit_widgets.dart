@@ -15,9 +15,9 @@ Widget deviceCard(Isar isar, Device device) {
       borderRadius: BorderRadius.all(Radius.circular(20)),
       boxShadow: [
         BoxShadow(
-          color: Color.fromARGB(25, 0, 0, 0),
+          color: Color.fromARGB(20, 0, 0, 0),
           offset: Offset(2, 2),
-          blurRadius: 8,
+          blurRadius: 5,
         ),
       ],
     ),
