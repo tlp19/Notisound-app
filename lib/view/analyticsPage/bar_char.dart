@@ -75,13 +75,22 @@ class AnalyticsBarChartState extends State<AnalyticsBarChart> {
                       // If in demo mode:
                       if (widget.demoMode && (widget.category == "Doorbell")) {
                         // Add large-scale dummy data to fill "Doorbell" graph
-                        data = [26, 31, 22, 37, 41, 32, 23];
-                        data.last += countMessageMatchMonth(snapshot.data!, 0);
+                        // [26, 31, 22, 37, 41, 32, 23]
+                        data[0] += 26;
+                        data[1] += 31;
+                        data[2] += 22;
+                        data[3] += 37;
+                        data[4] += 41;
+                        data[5] += 32;
+                        data[6] += 23;
                       } else if (widget.demoMode &&
                           (widget.category == "Fire Alarm")) {
                         // Add large-scale dummy data to fill "Fire Alarm" graph
-                        data = [0, 1, 0, 2, 1, 1, 0];
-                        data.last += countMessageMatchMonth(snapshot.data!, 0);
+                        // [0, 1, 0, 2, 1, 1, 0]
+                        data[1] += 1;
+                        data[3] += 2;
+                        data[4] += 1;
+                        data[5] += 1;
                       }
                       return _BarChart(
                         data: data,
