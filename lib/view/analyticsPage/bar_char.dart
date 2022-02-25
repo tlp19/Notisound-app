@@ -28,7 +28,7 @@ class AnalyticsBarChartState extends State<AnalyticsBarChart> {
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.all(8),
-        padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
+        padding: const EdgeInsets.fromLTRB(6, 6, 6, 10),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -44,7 +44,7 @@ class AnalyticsBarChartState extends State<AnalyticsBarChart> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 4, 4, 40),
+              padding: const EdgeInsets.fromLTRB(12, 10, 12, 40),
               child: Text(
                 widget.label,
                 style: const TextStyle(
@@ -62,21 +62,22 @@ class AnalyticsBarChartState extends State<AnalyticsBarChart> {
                   builder: (BuildContext context,
                       AsyncSnapshot<List<Message>> snapshot) {
                     if (snapshot.hasData) {
-                      List<double> data = [0, 1, 2, 3, 4, 5, 6];
+                      // First initialize the data list with the offset of the
+                      // month in the past that you want to isolate
+                      List<double> data = [6, 5, 4, 3, 2, 1, 0];
+                      // Then map the list with the filtering function
                       data = data
                           .map((value) => countMessageMatchMonth(
                               snapshot.data!, value.toInt()))
                           .toList();
-                      // Uncomment for dummy data, Comment for real data:
-                      //data = [9, 12, 8, 16, 18, 10, 5];
                       return _BarChart(
                         data: data,
                         colorProfile: widget.colorProfile,
                       );
                     } else {
-                      List<double> data = [0, 0, 0, 0, 0, 0, 0];
+                      List<double> dataZero = [0, 0, 0, 0, 0, 0, 0];
                       return _BarChart(
-                        data: data,
+                        data: dataZero,
                         colorProfile: widget.colorProfile,
                       );
                     }
@@ -162,21 +163,21 @@ class _BarChart extends StatelessWidget {
         BarChartGroupData(
           x: 0,
           barRods: [
-            BarChartRodData(y: data[6], width: 12, colors: colorProfile)
+            BarChartRodData(y: data[0], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),
         BarChartGroupData(
           x: 1,
           barRods: [
-            BarChartRodData(y: data[5], width: 12, colors: colorProfile)
+            BarChartRodData(y: data[1], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),
         BarChartGroupData(
           x: 2,
           barRods: [
-            BarChartRodData(y: data[4], width: 12, colors: colorProfile)
+            BarChartRodData(y: data[2], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),
@@ -190,21 +191,21 @@ class _BarChart extends StatelessWidget {
         BarChartGroupData(
           x: 4,
           barRods: [
-            BarChartRodData(y: data[2], width: 12, colors: colorProfile)
+            BarChartRodData(y: data[4], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),
         BarChartGroupData(
           x: 5,
           barRods: [
-            BarChartRodData(y: data[1], width: 12, colors: colorProfile)
+            BarChartRodData(y: data[5], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),
         BarChartGroupData(
           x: 6,
           barRods: [
-            BarChartRodData(y: data[0], width: 12, colors: colorProfile)
+            BarChartRodData(y: data[6], width: 12, colors: colorProfile)
           ],
           showingTooltipIndicators: [0],
         ),

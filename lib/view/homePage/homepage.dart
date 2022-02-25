@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
             // Homepage header
             HomepageHeader(title: widget.title),
             const SizedBox(
-              height: 16,
+              height: 20,
             ),
             // History list of previously received Messages
             MessagesHistoryListView(isar: widget.isar),
