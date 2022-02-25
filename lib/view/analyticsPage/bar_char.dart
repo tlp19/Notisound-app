@@ -72,11 +72,14 @@ class AnalyticsBarChartState extends State<AnalyticsBarChart> {
                           .map((value) => countMessageMatchMonth(
                               snapshot.data!, value.toInt()))
                           .toList();
+                      // If in demo mode:
                       if (widget.demoMode && (widget.category == "Doorbell")) {
+                        // Add large-scale dummy data to fill "Doorbell" graph
                         data = [26, 31, 22, 37, 41, 32, 23];
                         data.last += countMessageMatchMonth(snapshot.data!, 0);
                       } else if (widget.demoMode &&
                           (widget.category == "Fire Alarm")) {
+                        // Add large-scale dummy data to fill "Fire Alarm" graph
                         data = [0, 1, 0, 2, 1, 1, 0];
                         data.last += countMessageMatchMonth(snapshot.data!, 0);
                       }
