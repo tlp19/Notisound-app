@@ -82,7 +82,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
               ),
               // Demo mode toggle
               Padding(
-                padding: EdgeInsets.all(24),
+                padding: const EdgeInsets.all(24),
                 child: Row(
                   children: [
                     const Text(
