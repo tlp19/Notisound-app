@@ -79,7 +79,7 @@ class _SubscriptionFormState extends State<SubscriptionForm> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(12.0),
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 16.0),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -103,7 +103,11 @@ class _SubscriptionFormState extends State<SubscriptionForm> {
               controller: textController1,
               decoration: const InputDecoration(
                 border: InputBorder.none,
-                label: Text("Device ID:"),
+                label: Text(
+                  "Device ID:",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500, color: Colors.black),
+                ),
               ),
             ),
             // Topic DropDown Menu
@@ -113,6 +117,7 @@ class _SubscriptionFormState extends State<SubscriptionForm> {
                   "Detection mode:  ",
                   style: TextStyle(
                     fontSize: 16,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 DropdownButton(
@@ -142,6 +147,7 @@ class _SubscriptionFormState extends State<SubscriptionForm> {
             iconButton(
               size: 30,
               label: "Add new device and/or mode",
+              labelWeight: FontWeight.bold,
               icon: Icons.add_rounded,
               iconRatio: 4.0 / 5.0,
               color: const Color.fromARGB(255, 5, 107, 190),
