@@ -14,8 +14,9 @@ AppBar transparentAppBar() {
 
 /// Colourful circular button with an icon
 Widget iconButton(
-    {String? label,
-    double size = 45,
+    {double size = 45,
+    String? label,
+    labelWeight = FontWeight.w500,
     double iconRatio = 2.0 / 3.0,
     required IconData icon,
     required Color color,
@@ -51,7 +52,7 @@ Widget iconButton(
                   label,
                   style: TextStyle(
                     fontSize: (size * 20 / 45),
-                    fontWeight: FontWeight.w500,
+                    fontWeight: labelWeight,
                   ),
                 ),
               ),

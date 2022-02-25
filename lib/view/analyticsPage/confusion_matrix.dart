@@ -31,25 +31,25 @@ Widget confusionMatrixCard() {
         // 2nd row
         TableRow(children: [
           cell(text: "Doorbell", weight: FontWeight.bold),
-          cell(text: "cell"),
-          cell(text: "cell", color: Colors.grey),
-          cell(text: "cell", color: Colors.grey),
+          cell(text: "92%"),
+          cell(text: "5%", color: Colors.grey),
+          cell(text: "3%", color: Colors.grey),
         ]),
 
         // 3rd row
         TableRow(children: [
           cell(text: "Fire Alarm", weight: FontWeight.bold),
-          cell(text: "cell", color: Colors.grey),
-          cell(text: "cell"),
-          cell(text: "cell", color: Colors.grey),
+          cell(text: "8%", color: Colors.grey),
+          cell(text: "88%"),
+          cell(text: "4%", color: Colors.grey),
         ]),
 
         // 4th row
         TableRow(children: [
           cell(text: "Noise", weight: FontWeight.bold),
-          cell(text: "cell", color: Colors.grey),
-          cell(text: "cell", color: Colors.grey),
-          cell(text: "cell"),
+          cell(text: "0%", color: Colors.grey),
+          cell(text: "7%", color: Colors.grey),
+          cell(text: "93%"),
         ]),
       ],
     ),
@@ -57,7 +57,11 @@ Widget confusionMatrixCard() {
 }
 
 /// Customizable cell type used for displaying text in tables
-Widget cell({required String text, FontWeight? weight, Color? color}) {
+Widget cell({
+  required String text,
+  FontWeight weight = FontWeight.w500,
+  Color color = Colors.black,
+}) {
   return Padding(
     padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
     child: Text(
