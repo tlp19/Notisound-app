@@ -37,19 +37,19 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Title
-              const Padding(
-                padding: EdgeInsets.only(left: 8.0, bottom: 4.0),
-                child: Text(
-                  "Confusion matrix:",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-              ),
-              // Confusion matrix card of the NN model
-              confusionMatrixCard(),
-              const SizedBox(
-                height: 48,
-              ),
+              // // Title
+              // const Padding(
+              //   padding: EdgeInsets.only(left: 8.0, bottom: 4.0),
+              //   child: Text(
+              //     "Confusion matrix:",
+              //     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              //   ),
+              // ),
+              // // Confusion matrix card of the NN model
+              // confusionMatrixCard(),
+              // const SizedBox(
+              //   height: 48,
+              // ),
               // Title
               const Padding(
                 padding: EdgeInsets.only(left: 8.0, bottom: 4.0),
