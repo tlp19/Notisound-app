@@ -6,9 +6,9 @@
 
 This is the original repository of the Notisound App, however this app was developed for the IoT Device project (Embedded Systems CW1) of the group returnSuccess4.
 
-To view our final and complete work, please visit [this GitHub repository](https://github.com/timeo-schmidt/buzzinga/).
+To view our final and complete work, please visit [this GitHub repository](https://github.com/tlp19/returnSuccess4-Notisound).
 
-You will find there the contribution all the amazing team behind the project, as well as screenshots of the app in its final form (in the [`mobile_app/`](https://github.com/timeo-schmidt/buzzinga/tree/main/mobile_app) folder)
+You will find there the contribution all the amazing team behind the project, as well as screenshots of the app in its final form (in the [`mobile_app/`](https://github.com/tlp19/returnSuccess4-Notisound/tree/main/mobile_app) folder)
 
 </br>
 
